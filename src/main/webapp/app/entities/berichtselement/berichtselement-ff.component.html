@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.berichtselement.home.title">Berichtselements</span>
+        <button class="btn btn-primary float-right jh-create-entity create-berichtselement-ff" [routerLink]="['/', { outlets: { popup: ['berichtselement-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.berichtselement.home.createLabel">
+            Create new Berichtselement
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="berichtselements">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="beginn"><span jhiTranslate="ffManagementSuiteApp.berichtselement.beginn">Beginn</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ende"><span jhiTranslate="ffManagementSuiteApp.berichtselement.ende">Ende</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="titel"><span jhiTranslate="ffManagementSuiteApp.berichtselement.titel">Titel</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="beschreibung"><span jhiTranslate="ffManagementSuiteApp.berichtselement.beschreibung">Beschreibung</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="stunden"><span jhiTranslate="ffManagementSuiteApp.berichtselement.stunden">Stunden</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="kategorie"><span jhiTranslate="ffManagementSuiteApp.berichtselement.kategorie">Kategorie</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let berichtselement of berichtselements ;trackBy: trackId">
+                <td><a [routerLink]="['../berichtselement-ff', berichtselement.id ]">{{berichtselement.id}}</a></td>
+                <td>{{berichtselement.beginn | date:'medium'}}</td>
+                <td>{{berichtselement.ende | date:'medium'}}</td>
+                <td>{{berichtselement.titel}}</td>
+                <td>{{berichtselement.beschreibung}}</td>
+                <td>{{berichtselement.stunden}}</td>
+                <td jhiTranslate="{{'ffManagementSuiteApp.Berichtskategorie.' + berichtselement.kategorie}}">{{berichtselement.kategorie}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../berichtselement-ff', berichtselement.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'berichtselement-ff/'+ berichtselement.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'berichtselement-ff/'+ berichtselement.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+{
+    "ffManagementSuiteApp": {
+        "auspraegung" : {
+            "home": {
+                "title": "Ausprägungen",
+                "createLabel": "Ausprägung erstellen",
+                "createOrEditLabel": "Ausprägung erstellen oder bearbeiten"
+            },
+            "created": "Ausprägung erstellt mit ID {{ param }}",
+            "updated": "Ausprägung aktualisiert mit ID {{ param }}",
+            "deleted": "Ausprägung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Ausprägung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Ausprägung"
+            },
+            "bezeichnung": "Bezeichnung"
+        }
+    }
+}

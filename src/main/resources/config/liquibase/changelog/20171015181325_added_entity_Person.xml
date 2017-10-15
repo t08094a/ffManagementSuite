@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Person.
+    -->
+    <changeSet id="20171015181325-1" author="jhipster">
+        <createTable tableName="person">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="vorname" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="nachname" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="geburtsdatum" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="strasse" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="hausnummer" type="integer">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="appendix" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="postleitzahl" type="varchar(5)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="ort" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="ehrung_25_jahre" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ehrung_40_jahre" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="zugehoerigkeit_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>
+            <column name="in_dienststellung_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+        <createTable tableName="person_fuehrerscheine">
+            <column name="fuehrerscheines_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="people_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="people_id, fuehrerscheines_id" tableName="person_fuehrerscheine"/>
+        
+        <createTable tableName="person_verfuegbarkeiten">
+            <column name="verfuegbarkeitens_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="people_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="people_id, verfuegbarkeitens_id" tableName="person_verfuegbarkeiten"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

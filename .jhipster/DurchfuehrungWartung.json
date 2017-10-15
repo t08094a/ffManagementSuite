@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "inventar",
+            "otherEntityName": "inventar",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "schutzausruestung",
+            "otherEntityName": "schutzausruestung",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "fahrzeug",
+            "otherEntityName": "fahrzeug",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "atemschutzInventar",
+            "otherEntityName": "atemschutzInventar",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "definition",
+            "otherEntityName": "wartung",
+            "otherEntityField": "datum",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "durchfuehrungWartung"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "datum",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "kosten",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20171015181346",
+    "entityTableName": "durchfuehrung_wartung",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "ff",
+    "enableEntityAudit": true
+}

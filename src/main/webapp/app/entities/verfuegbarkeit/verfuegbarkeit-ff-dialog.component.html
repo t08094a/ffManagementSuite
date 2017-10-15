@@ -1,0 +1,66 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myVerfuegbarkeitLabel" jhiTranslate="ffManagementSuiteApp.verfuegbarkeit.home.createOrEditLabel">Create or edit a Verfuegbarkeit</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!verfuegbarkeit.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="verfuegbarkeit.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.verfuegbarkeit.titel" for="field_titel">Titel</label>
+            <input type="text" class="form-control" name="titel" id="field_titel"
+                [(ngModel)]="verfuegbarkeit.titel" required minlength="1" />
+            <div [hidden]="!(editForm.controls.titel?.dirty && editForm.controls.titel?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.titel?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.titel?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 1 }">
+                   This field is required to be at least 1 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.verfuegbarkeit.wocheneinteilung" for="field_wocheneinteilung">Wocheneinteilung</label>
+            <select class="form-control" name="wocheneinteilung" [(ngModel)]="verfuegbarkeit.wocheneinteilung" id="field_wocheneinteilung"  required>
+                <option value="WOCHENTAG">{{'ffManagementSuiteApp.Wocheneinteilung.WOCHENTAG' | translate}}</option>
+                <option value="WOCHENENDE">{{'ffManagementSuiteApp.Wocheneinteilung.WOCHENENDE' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.wocheneinteilung?.dirty && editForm.controls.wocheneinteilung?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.wocheneinteilung?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.verfuegbarkeit.tageszeit" for="field_tageszeit">Tageszeit</label>
+            <select class="form-control" name="tageszeit" [(ngModel)]="verfuegbarkeit.tageszeit" id="field_tageszeit"  required>
+                <option value="TAG">{{'ffManagementSuiteApp.Tageszeit.TAG' | translate}}</option>
+                <option value="NACHT">{{'ffManagementSuiteApp.Tageszeit.NACHT' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.tageszeit?.dirty && editForm.controls.tageszeit?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.tageszeit?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

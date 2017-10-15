@@ -1,0 +1,29 @@
+{
+    "ffManagementSuiteApp": {
+        "schutzausruestung" : {
+            "home": {
+                "title": "Schutzausrüstungen",
+                "createLabel": "Schutzausrüstung erstellen",
+                "createOrEditLabel": "Schutzausrüstung erstellen oder bearbeiten"
+            },
+            "created": "Schutzausrüstung erstellt mit ID {{ param }}",
+            "updated": "Schutzausrüstung aktualisiert mit ID {{ param }}",
+            "deleted": "Schutzausrüstung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die Schutzausrüstung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Schutzausrüstung"
+            },
+            "nummer": "Nummer",
+            "angeschafftAm": "Angeschafft am",
+            "ausgemustertAm": "Ausgemustert am",
+            "groesse": "Größe",
+            "kategorie": "Kategorie",
+            "auspraegung": "Ausprägung",
+            "durchgefuehrteWartungen": "Durchgeführte Wartungen",
+            "durchgefuehrtePruefungen": "Durchgeführte Prüfungen",
+            "besitzer": "Besitzer"
+        }
+    }
+}

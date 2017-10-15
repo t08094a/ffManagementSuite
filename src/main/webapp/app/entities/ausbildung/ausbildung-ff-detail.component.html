@@ -1,0 +1,50 @@
+
+<div *ngIf="ausbildung">
+    <h2><span jhiTranslate="ffManagementSuiteApp.ausbildung.detail.title">Ausbildung</span> {{ausbildung.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.ausbildung.beginn">Beginn</span></dt>
+        <dd>
+            <span>{{ausbildung.beginn | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.ausbildung.ende">Ende</span></dt>
+        <dd>
+            <span>{{ausbildung.ende | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.ausbildung.zeugnis">Zeugnis</span></dt>
+        <dd>
+            <div *ngIf="ausbildung.zeugnis">
+                <a (click)="openFile(ausbildung.zeugnisContentType, ausbildung.zeugnis)">
+                    <img [src]="'data:' + ausbildung.zeugnisContentType + ';base64,' + ausbildung.zeugnis" style="max-width: 100%;" alt="ausbildung image"/>
+                </a>
+                {{ausbildung.zeugnisContentType}}, {{byteSize(ausbildung.zeugnis)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.ausbildung.person">Person</span></dt>
+        <dd>
+            <div *ngIf="ausbildung.person">
+                <a [routerLink]="['/person-ff', ausbildung.person?.id]">{{ausbildung.person?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.ausbildung.lehrgang">Lehrgang</span></dt>
+        <dd>
+            <div *ngIf="ausbildung.lehrgang">
+                <a [routerLink]="['/lehrgang-ff', ausbildung.lehrgang?.id]">{{ausbildung.lehrgang?.titel}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ausbildung-ff/'+ ausbildung.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

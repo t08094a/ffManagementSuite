@@ -1,0 +1,24 @@
+{
+    "ffManagementSuiteApp": {
+        "erreichbarkeit" : {
+            "home": {
+                "title": "Erreichbarkeiten",
+                "createLabel": "Erreichbarkeit erstellen",
+                "createOrEditLabel": "Erreichbarkeit erstellen oder bearbeiten"
+            },
+            "created": "Erreichbarkeit erstellt mit ID {{ param }}",
+            "updated": "Erreichbarkeit aktualisiert mit ID {{ param }}",
+            "deleted": "Erreichbarkeit gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die Erreichbarkeit {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Erreichbarkeit"
+            },
+            "typ": "Typ",
+            "vorwahl": "Vorwahl",
+            "rufnummer": "Rufnummer",
+            "person": "Person"
+        }
+    }
+}

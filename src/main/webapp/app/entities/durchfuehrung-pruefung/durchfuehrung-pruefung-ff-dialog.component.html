@@ -1,0 +1,81 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDurchfuehrungPruefungLabel" jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.home.createOrEditLabel">Create or edit a Durchfuehrung Pruefung</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!durchfuehrungPruefung.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="durchfuehrungPruefung.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.datum" for="field_datum">Datum</label>
+            <div class="input-group">
+                <input id="field_datum" type="text" class="form-control" name="datum" ngbDatepicker  #datumDp="ngbDatepicker" [(ngModel)]="durchfuehrungPruefung.datum"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="datumDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.datum?.dirty && editForm.controls.datum?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.datum?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.kosten" for="field_kosten">Kosten</label>
+            <input type="number" class="form-control" name="kosten" id="field_kosten"
+                [(ngModel)]="durchfuehrungPruefung.kosten"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.inventar" for="field_inventar">Inventar</label>
+            <select class="form-control" id="field_inventar" name="inventar" [(ngModel)]="durchfuehrungPruefung.inventar" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="inventarOption.id === durchfuehrungPruefung.inventar?.id ? durchfuehrungPruefung.inventar : inventarOption" *ngFor="let inventarOption of inventars; trackBy: trackInventarById">{{inventarOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.schutzausruestung" for="field_schutzausruestung">Schutzausruestung</label>
+            <select class="form-control" id="field_schutzausruestung" name="schutzausruestung" [(ngModel)]="durchfuehrungPruefung.schutzausruestung" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="schutzausruestungOption.id === durchfuehrungPruefung.schutzausruestung?.id ? durchfuehrungPruefung.schutzausruestung : schutzausruestungOption" *ngFor="let schutzausruestungOption of schutzausruestungs; trackBy: trackSchutzausruestungById">{{schutzausruestungOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.fahrzeug" for="field_fahrzeug">Fahrzeug</label>
+            <select class="form-control" id="field_fahrzeug" name="fahrzeug" [(ngModel)]="durchfuehrungPruefung.fahrzeug" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="fahrzeugOption.id === durchfuehrungPruefung.fahrzeug?.id ? durchfuehrungPruefung.fahrzeug : fahrzeugOption" *ngFor="let fahrzeugOption of fahrzeugs; trackBy: trackFahrzeugById">{{fahrzeugOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.atemschutzInventar" for="field_atemschutzInventar">Atemschutz Inventar</label>
+            <select class="form-control" id="field_atemschutzInventar" name="atemschutzInventar" [(ngModel)]="durchfuehrungPruefung.atemschutzInventar" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="atemschutzInventarOption.id === durchfuehrungPruefung.atemschutzInventar?.id ? durchfuehrungPruefung.atemschutzInventar : atemschutzInventarOption" *ngFor="let atemschutzInventarOption of atemschutzinventars; trackBy: trackAtemschutzInventarById">{{atemschutzInventarOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.definition" for="field_definition">Definition</label>
+            <select class="form-control" id="field_definition" name="definition" [(ngModel)]="durchfuehrungPruefung.definition">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="pruefungOption.id === durchfuehrungPruefung.definition?.id ? durchfuehrungPruefung.definition : pruefungOption" *ngFor="let pruefungOption of definitions; trackBy: trackPruefungById">{{pruefungOption.datum}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

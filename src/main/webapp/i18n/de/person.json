@@ -1,0 +1,41 @@
+{
+    "ffManagementSuiteApp": {
+        "person" : {
+            "home": {
+                "title": "Mitglieder",
+                "createLabel": "Person erstellen",
+                "createOrEditLabel": "Person erstellen oder bearbeiten"
+            },
+            "created": "Person erstellt mit ID {{ param }}",
+            "updated": "Person aktualisiert mit ID {{ param }}",
+            "deleted": "Person gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Person {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Person"
+            },
+            "vorname": "Vorname",
+            "nachname": "Nachname",
+            "geburtsdatum": "Geburtsdatum",
+            "strasse": "Straße",
+            "hausnummer": "Hausnummer",
+            "appendix": "Appendix",
+            "postleitzahl": "Plz",
+            "ort": "Ort",
+            "status": "Status",
+            "ehrung25Jahre": "Ehrung 25 Jahre",
+            "ehrung40Jahre": "Ehrung 40 Jahre",
+            "zugehoerigkeit": "Zugehörigkeit",
+            "erreichbarkeiten": "Erreichbarkeiten",
+            "emails": "Emails",
+            "dienstzeiten": "Dienstzeiten",
+            "ausbildungen": "Ausbildungen",
+            "schutzausruestung": "Schutzausrüstung",
+            "inDienststellung": "In Dienststellung",
+            "fuehrerscheine": "Führerscheine",
+            "verfuegbarkeiten": "Verfügbarkeiten",
+            "leistungspruefungen": "Leistungsprüfungen"
+        }
+    }
+}

@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.home.title">Erreichbarkeits</span>
+        <button class="btn btn-primary float-right jh-create-entity create-erreichbarkeit-ff" [routerLink]="['/', { outlets: { popup: ['erreichbarkeit-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.erreichbarkeit.home.createLabel">
+            Create new Erreichbarkeit
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="erreichbarkeits">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typ"><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.typ">Typ</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vorwahl"><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.vorwahl">Vorwahl</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rufnummer"><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.rufnummer">Rufnummer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="person.id"><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.person">Person</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let erreichbarkeit of erreichbarkeits ;trackBy: trackId">
+                <td><a [routerLink]="['../erreichbarkeit-ff', erreichbarkeit.id ]">{{erreichbarkeit.id}}</a></td>
+                <td>{{erreichbarkeit.typ}}</td>
+                <td>{{erreichbarkeit.vorwahl}}</td>
+                <td>{{erreichbarkeit.rufnummer}}</td>
+                <td>
+                    <div *ngIf="erreichbarkeit.person">
+                        <a [routerLink]="['../person-ff', erreichbarkeit.person?.id ]" >{{erreichbarkeit.person?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../erreichbarkeit-ff', erreichbarkeit.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'erreichbarkeit-ff/'+ erreichbarkeit.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'erreichbarkeit-ff/'+ erreichbarkeit.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

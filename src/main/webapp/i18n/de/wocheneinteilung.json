@@ -1,0 +1,9 @@
+{
+    "ffManagementSuiteApp": {
+        "Wocheneinteilung" : {
+            "null": "",
+            "WOCHENTAG": "Wochentag",
+            "WOCHENENDE": "Wochenende"
+        }
+    }
+}

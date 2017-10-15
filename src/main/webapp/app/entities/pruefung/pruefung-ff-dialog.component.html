@@ -1,0 +1,120 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPruefungLabel" jhiTranslate="ffManagementSuiteApp.pruefung.home.createOrEditLabel">Create or edit a Pruefung</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pruefung.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pruefung.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.pruefung.bezeichnung" for="field_bezeichnung">Bezeichnung</label>
+            <input type="text" class="form-control" name="bezeichnung" id="field_bezeichnung"
+                [(ngModel)]="pruefung.bezeichnung" required />
+            <div [hidden]="!(editForm.controls.bezeichnung?.dirty && editForm.controls.bezeichnung?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.bezeichnung?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.pruefung.beginn" for="field_beginn">Beginn</label>
+            <div class="input-group">
+                <input id="field_beginn" type="text" class="form-control" name="beginn" ngbDatepicker  #beginnDp="ngbDatepicker" [(ngModel)]="pruefung.beginn"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="beginnDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.beginn?.dirty && editForm.controls.beginn?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.beginn?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.pruefung.letztePruefung" for="field_letztePruefung">Letzte Pruefung</label>
+            <div class="input-group">
+                <input id="field_letztePruefung" type="text" class="form-control" name="letztePruefung" ngbDatepicker  #letztePruefungDp="ngbDatepicker" [(ngModel)]="pruefung.letztePruefung"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="letztePruefungDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.pruefung.intervallWert" for="field_intervallWert">Intervall Wert</label>
+            <input type="number" class="form-control" name="intervallWert" id="field_intervallWert"
+                [(ngModel)]="pruefung.intervallWert" required min="1" />
+            <div [hidden]="!(editForm.controls.intervallWert?.dirty && editForm.controls.intervallWert?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.intervallWert?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.intervallWert?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 1 }">
+                    This field should be at least 1.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.intervallWert?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.pruefung.intervallEinheit" for="field_intervallEinheit">Intervall Einheit</label>
+            <select class="form-control" name="intervallEinheit" [(ngModel)]="pruefung.intervallEinheit" id="field_intervallEinheit"  required>
+                <option value="MONAT">{{'ffManagementSuiteApp.IntervallEinheit.MONAT' | translate}}</option>
+                <option value="JAHR">{{'ffManagementSuiteApp.IntervallEinheit.JAHR' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.intervallEinheit?.dirty && editForm.controls.intervallEinheit?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.intervallEinheit?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.pruefung.kosten" for="field_kosten">Kosten</label>
+            <input type="number" class="form-control" name="kosten" id="field_kosten"
+                [(ngModel)]="pruefung.kosten" required min="0" />
+            <div [hidden]="!(editForm.controls.kosten?.dirty && editForm.controls.kosten?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.kosten?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.kosten?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.kosten?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.pruefung.inventarKategorie" for="field_inventarKategorie">Inventar Kategorie</label>
+            <select class="form-control" id="field_inventarKategorie" name="inventarKategorie" [(ngModel)]="pruefung.inventarKategorie" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="inventarKategorieOption.id === pruefung.inventarKategorie?.id ? pruefung.inventarKategorie : inventarKategorieOption" *ngFor="let inventarKategorieOption of inventarkategories; trackBy: trackInventarKategorieById">{{inventarKategorieOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

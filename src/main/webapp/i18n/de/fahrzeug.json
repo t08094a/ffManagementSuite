@@ -1,0 +1,28 @@
+{
+    "ffManagementSuiteApp": {
+        "fahrzeug" : {
+            "home": {
+                "title": "Fahrzeuge",
+                "createLabel": "Fahrzeug erstellen",
+                "createOrEditLabel": "Fahrzeug erstellen oder bearbeiten"
+            },
+            "created": "Fahrzeug erstellt mit ID {{ param }}",
+            "updated": "Fahrzeug aktualisiert mit ID {{ param }}",
+            "deleted": "Fahrzeug gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll das Fahrzeug {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Fahrzeug"
+            },
+            "nummer": "Nummer",
+            "angeschafftAm": "Angeschafft am",
+            "ausgemustertAm": "Ausgemustert am",
+            "nummernschild": "Nummernschild",
+            "funkrufname": "Funkrufname",
+            "kategorie": "Kategorie",
+            "durchgefuehrteWartungen": "Durchgeführte Wartungen",
+            "durchgefuehrtePruefungen": "Durchgeführte Prüfungen"
+        }
+    }
+}

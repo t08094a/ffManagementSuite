@@ -1,0 +1,88 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.home.title">Durchfuehrung Pruefungs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-durchfuehrung-pruefung-ff" [routerLink]="['/', { outlets: { popup: ['durchfuehrung-pruefung-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.home.createLabel">
+            Create new Durchfuehrung Pruefung
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="durchfuehrungPruefungs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="datum"><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.datum">Datum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="kosten"><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.kosten">Kosten</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="inventar.id"><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.inventar">Inventar</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="schutzausruestung.id"><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.schutzausruestung">Schutzausruestung</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fahrzeug.id"><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.fahrzeug">Fahrzeug</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="atemschutzInventar.id"><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.atemschutzInventar">Atemschutz Inventar</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="definition.datum"><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.definition">Definition</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let durchfuehrungPruefung of durchfuehrungPruefungs ;trackBy: trackId">
+                <td><a [routerLink]="['../durchfuehrung-pruefung-ff', durchfuehrungPruefung.id ]">{{durchfuehrungPruefung.id}}</a></td>
+                <td>{{durchfuehrungPruefung.datum | date:'mediumDate'}}</td>
+                <td>{{durchfuehrungPruefung.kosten}}</td>
+                <td>
+                    <div *ngIf="durchfuehrungPruefung.inventar">
+                        <a [routerLink]="['../inventar-ff', durchfuehrungPruefung.inventar?.id ]" >{{durchfuehrungPruefung.inventar?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="durchfuehrungPruefung.schutzausruestung">
+                        <a [routerLink]="['../schutzausruestung-ff', durchfuehrungPruefung.schutzausruestung?.id ]" >{{durchfuehrungPruefung.schutzausruestung?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="durchfuehrungPruefung.fahrzeug">
+                        <a [routerLink]="['../fahrzeug-ff', durchfuehrungPruefung.fahrzeug?.id ]" >{{durchfuehrungPruefung.fahrzeug?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="durchfuehrungPruefung.atemschutzInventar">
+                        <a [routerLink]="['../atemschutz-inventar-ff', durchfuehrungPruefung.atemschutzInventar?.id ]" >{{durchfuehrungPruefung.atemschutzInventar?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="durchfuehrungPruefung.definition">
+                        <a [routerLink]="['../pruefung-ff', durchfuehrungPruefung.definition?.id ]" >{{durchfuehrungPruefung.definition?.datum}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../durchfuehrung-pruefung-ff', durchfuehrungPruefung.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'durchfuehrung-pruefung-ff/'+ durchfuehrungPruefung.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'durchfuehrung-pruefung-ff/'+ durchfuehrungPruefung.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

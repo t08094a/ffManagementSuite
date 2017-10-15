@@ -1,0 +1,10 @@
+{
+    "ffManagementSuiteApp": {
+        "Mitgliedsstatus" : {
+            "null": "",
+            "AKTIV": "aktiv",
+            "PASSIV": "passiv",
+            "FOERDERND": "fördernd"
+        }
+    }
+}

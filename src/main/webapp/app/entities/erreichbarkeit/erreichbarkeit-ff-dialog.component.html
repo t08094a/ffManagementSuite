@@ -1,0 +1,77 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myErreichbarkeitLabel" jhiTranslate="ffManagementSuiteApp.erreichbarkeit.home.createOrEditLabel">Create or edit a Erreichbarkeit</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!erreichbarkeit.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="erreichbarkeit.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.erreichbarkeit.typ" for="field_typ">Typ</label>
+            <input type="text" class="form-control" name="typ" id="field_typ"
+                [(ngModel)]="erreichbarkeit.typ" required minlength="3" />
+            <div [hidden]="!(editForm.controls.typ?.dirty && editForm.controls.typ?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.typ?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.typ?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 3 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.erreichbarkeit.vorwahl" for="field_vorwahl">Vorwahl</label>
+            <input type="text" class="form-control" name="vorwahl" id="field_vorwahl"
+                [(ngModel)]="erreichbarkeit.vorwahl" required minlength="4" />
+            <div [hidden]="!(editForm.controls.vorwahl?.dirty && editForm.controls.vorwahl?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.vorwahl?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.vorwahl?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 4 }">
+                   This field is required to be at least 4 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.erreichbarkeit.rufnummer" for="field_rufnummer">Rufnummer</label>
+            <input type="text" class="form-control" name="rufnummer" id="field_rufnummer"
+                [(ngModel)]="erreichbarkeit.rufnummer" required minlength="3" />
+            <div [hidden]="!(editForm.controls.rufnummer?.dirty && editForm.controls.rufnummer?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.rufnummer?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.rufnummer?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 3 characters.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.erreichbarkeit.person" for="field_person">Person</label>
+            <select class="form-control" id="field_person" name="person" [(ngModel)]="erreichbarkeit.person" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id === erreichbarkeit.person?.id ? erreichbarkeit.person : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

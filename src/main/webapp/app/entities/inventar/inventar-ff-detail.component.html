@@ -1,0 +1,39 @@
+
+<div *ngIf="inventar">
+    <h2><span jhiTranslate="ffManagementSuiteApp.inventar.detail.title">Inventar</span> {{inventar.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.inventar.nummer">Nummer</span></dt>
+        <dd>
+            <span>{{inventar.nummer}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.inventar.angeschafftAm">Angeschafft Am</span></dt>
+        <dd>
+            <span>{{inventar.angeschafftAm | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.inventar.ausgemustertAm">Ausgemustert Am</span></dt>
+        <dd>
+            <span>{{inventar.ausgemustertAm | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.inventar.kategorie">Kategorie</span></dt>
+        <dd>
+            <div *ngIf="inventar.kategorie">
+                <a [routerLink]="['/inventar-kategorie-ff', inventar.kategorie?.id]">{{inventar.kategorie?.titel}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'inventar-ff/'+ inventar.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

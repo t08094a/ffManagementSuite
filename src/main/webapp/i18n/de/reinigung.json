@@ -1,0 +1,21 @@
+{
+    "ffManagementSuiteApp": {
+        "reinigung" : {
+            "home": {
+                "title": "Reinigungs",
+                "createLabel": "Reinigung erstellen",
+                "createOrEditLabel": "Reinigung erstellen oder bearbeiten"
+            },
+            "created": "Reinigung erstellt mit ID {{ param }}",
+            "updated": "Reinigung aktualisiert mit ID {{ param }}",
+            "deleted": "Reinigung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Reinigung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Reinigung"
+            },
+            "durchfuehrung": "Durchfuehrung"
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "ffManagementSuiteApp": {
+        "verfuegbarkeit" : {
+            "home": {
+                "title": "Verfügbarkeiten",
+                "createLabel": "Verfügbarkeit erstellen",
+                "createOrEditLabel": "Verfügbarkeit erstellen oder bearbeiten"
+            },
+            "created": "Verfügbarkeit erstellt mit ID {{ param }}",
+            "updated": "Verfügbarkeit aktualisiert mit ID {{ param }}",
+            "deleted": "Verfügbarkeit gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die Verfügbarkeit {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Verfügbarkeit"
+            },
+            "titel": "Titel",
+            "wocheneinteilung": "Wocheneinteilung",
+            "tageszeit": "Tageszeit"
+        }
+    }
+}

@@ -1,0 +1,96 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySchutzausruestungLabel" jhiTranslate="ffManagementSuiteApp.schutzausruestung.home.createOrEditLabel">Create or edit a Schutzausruestung</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!schutzausruestung.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="schutzausruestung.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.schutzausruestung.nummer" for="field_nummer">Nummer</label>
+            <input type="number" class="form-control" name="nummer" id="field_nummer"
+                [(ngModel)]="schutzausruestung.nummer" required min="1" />
+            <div [hidden]="!(editForm.controls.nummer?.dirty && editForm.controls.nummer?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nummer?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.nummer?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 1 }">
+                    This field should be at least 1.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.nummer?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.schutzausruestung.angeschafftAm" for="field_angeschafftAm">Angeschafft Am</label>
+            <div class="input-group">
+                <input id="field_angeschafftAm" type="text" class="form-control" name="angeschafftAm" ngbDatepicker  #angeschafftAmDp="ngbDatepicker" [(ngModel)]="schutzausruestung.angeschafftAm"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="angeschafftAmDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.schutzausruestung.ausgemustertAm" for="field_ausgemustertAm">Ausgemustert Am</label>
+            <div class="input-group">
+                <input id="field_ausgemustertAm" type="text" class="form-control" name="ausgemustertAm" ngbDatepicker  #ausgemustertAmDp="ngbDatepicker" [(ngModel)]="schutzausruestung.ausgemustertAm"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="ausgemustertAmDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.schutzausruestung.groesse" for="field_groesse">Groesse</label>
+            <input type="text" class="form-control" name="groesse" id="field_groesse"
+                [(ngModel)]="schutzausruestung.groesse" required />
+            <div [hidden]="!(editForm.controls.groesse?.dirty && editForm.controls.groesse?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.groesse?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.schutzausruestung.kategorie" for="field_kategorie">Kategorie</label>
+            <select class="form-control" id="field_kategorie" name="kategorie" [(ngModel)]="schutzausruestung.kategorie">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="inventarKategorieOption.id === schutzausruestung.kategorie?.id ? schutzausruestung.kategorie : inventarKategorieOption" *ngFor="let inventarKategorieOption of kategories; trackBy: trackInventarKategorieById">{{inventarKategorieOption.titel}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.schutzausruestung.auspraegung" for="field_auspraegung">Auspraegung</label>
+            <select class="form-control" id="field_auspraegung" name="auspraegung" [(ngModel)]="schutzausruestung.auspraegung">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="auspraegungOption.id === schutzausruestung.auspraegung?.id ? schutzausruestung.auspraegung : auspraegungOption" *ngFor="let auspraegungOption of auspraegungs; trackBy: trackAuspraegungById">{{auspraegungOption.bezeichnung}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.schutzausruestung.besitzer" for="field_besitzer">Besitzer</label>
+            <select class="form-control" id="field_besitzer" name="besitzer" [(ngModel)]="schutzausruestung.besitzer" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id === schutzausruestung.besitzer?.id ? schutzausruestung.besitzer : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.nachname}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

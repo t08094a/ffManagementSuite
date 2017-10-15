@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Schutzausruestung.
+    -->
+    <changeSet id="20171015181338-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="kategorie_id"
+                                 baseTableName="schutzausruestung"
+                                 constraintName="fk_schutzausruestung_kategorie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="inventar_kategorie"/>
+
+        <addForeignKeyConstraint baseColumnNames="auspraegung_id"
+                                 baseTableName="schutzausruestung"
+                                 constraintName="fk_schutzausruestung_auspraegung_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="auspraegung"/>
+
+        <addForeignKeyConstraint baseColumnNames="besitzer_id"
+                                 baseTableName="schutzausruestung"
+                                 constraintName="fk_schutzausruestung_besitzer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+    </changeSet>
+</databaseChangeLog>

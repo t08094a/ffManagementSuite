@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.wartung.home.title">Wartungs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-wartung-ff" [routerLink]="['/', { outlets: { popup: ['wartung-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.wartung.home.createLabel">
+            Create new Wartung
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="wartungs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="bezeichnung"><span jhiTranslate="ffManagementSuiteApp.wartung.bezeichnung">Bezeichnung</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="beginn"><span jhiTranslate="ffManagementSuiteApp.wartung.beginn">Beginn</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="letzteWartung"><span jhiTranslate="ffManagementSuiteApp.wartung.letzteWartung">Letzte Wartung</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="intervallWert"><span jhiTranslate="ffManagementSuiteApp.wartung.intervallWert">Intervall Wert</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="intervallEinheit"><span jhiTranslate="ffManagementSuiteApp.wartung.intervallEinheit">Intervall Einheit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="kosten"><span jhiTranslate="ffManagementSuiteApp.wartung.kosten">Kosten</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="inventarKategorie.id"><span jhiTranslate="ffManagementSuiteApp.wartung.inventarKategorie">Inventar Kategorie</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let wartung of wartungs ;trackBy: trackId">
+                <td><a [routerLink]="['../wartung-ff', wartung.id ]">{{wartung.id}}</a></td>
+                <td>{{wartung.bezeichnung}}</td>
+                <td>{{wartung.beginn | date:'mediumDate'}}</td>
+                <td>{{wartung.letzteWartung | date:'mediumDate'}}</td>
+                <td>{{wartung.intervallWert}}</td>
+                <td jhiTranslate="{{'ffManagementSuiteApp.IntervallEinheit.' + wartung.intervallEinheit}}">{{wartung.intervallEinheit}}</td>
+                <td>{{wartung.kosten}}</td>
+                <td>
+                    <div *ngIf="wartung.inventarKategorie">
+                        <a [routerLink]="['../inventar-kategorie-ff', wartung.inventarKategorie?.id ]" >{{wartung.inventarKategorie?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../wartung-ff', wartung.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'wartung-ff/'+ wartung.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'wartung-ff/'+ wartung.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,288 @@
+
+entity Person 
+{
+	vorname String required minlength(3),
+    nachname String required minlength(3),
+    geburtsdatum LocalDate required,
+    strasse String required minlength(3),
+    hausnummer Integer required min(1),
+    appendix String,
+    postleitzahl String required minlength(5) maxlength(5),
+    ort String required minlength(3),
+    status Mitgliedsstatus required,
+    ehrung25Jahre LocalDate,
+    ehrung40Jahre LocalDate,
+}
+
+relationship OneToOne
+{
+	Person{zugehoerigkeit(name)} to Organisationsstruktur
+}
+
+relationship OneToMany 
+{
+	Person{erreichbarkeiten(typ)} to Erreichbarkeit,
+    Person{emails(typ)} to Email,
+    Person{dienstzeiten} to Dienstzeit, 
+	Person{ausbildungen(typ(titel))} to Ausbildung,
+        
+    Organisationsstruktur{gegliedertIn(name)} to Organisationsstruktur{parent(name)}
+}
+
+relationship ManyToOne
+{
+	Person{inDienststellung(titel)} to Dienststellung
+}
+
+// rechte part bekommt die Verlinkung dargestellt
+relationship ManyToMany
+{
+	Person{fuehrerscheine(klasse)} to Fuehrerschein,
+	Person{verfuegbarkeiten(titel)} to Verfuegbarkeit,
+    
+    Leistungspruefung{teilnehmer(nachname)} to Person{leistungspruefungen(abgelegtAm)}
+}
+
+entity Erreichbarkeit
+{
+	typ String required minlength(3),
+	vorwahl String required minlength(4),
+    rufnummer String required minlength(3)
+}
+
+entity Email
+{
+	typ String required minlength(3),
+    adresse String required minlength(5) pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"),
+}
+
+entity Ausbildung
+{
+	beginn LocalDate required,
+    ende LocalDate required,
+    zeugnis ImageBlob,
+}
+
+relationship ManyToOne
+{
+	Ausbildung{lehrgang(titel)} to Lehrgang
+}
+
+entity Lehrgang
+{
+	titel String required minlength(3),
+    abkuerzung String minlength(2)
+}
+
+relationship OneToMany
+{
+	Lehrgang{voraussetzungen(titel)} to Lehrgang
+}
+
+entity Organisationsstruktur
+{
+	name String required minlength(3)
+}
+
+entity Dienstzeit
+{
+	beginn LocalDate required,
+    ende LocalDate
+}
+
+entity Leistungspruefung
+{
+	typ LeistungspruefungTyp required,
+    stufe Integer required min(1) max(6),
+    abgelegtAm LocalDate required
+}
+
+enum LeistungspruefungTyp
+{
+	LOESCHANGRIFF,
+    THL
+}
+
+entity Fuehrerschein
+{
+	klasse String required minlength(1)
+}
+
+entity Verfuegbarkeit
+{
+	titel String required minlength(1),
+    wocheneinteilung Wocheneinteilung required,
+    tageszeit Tageszeit required
+}
+
+enum Wocheneinteilung
+{
+	WOCHENTAG,
+    WOCHENENDE
+}
+
+enum Tageszeit
+{
+	TAG,
+    NACHT
+}
+
+entity Dienststellung
+{
+	titel String required minlength(3),
+    abkuerzung String required minlength(2)
+}
+
+enum Mitgliedsstatus
+{
+	AKTIV,
+    PASSIV,
+    FOERDERND
+}
+
+entity InventarKategorie
+{
+	titel String required minlength(3),
+}
+
+enum IntervallEinheit
+{
+	MONAT,
+    JAHR
+}
+
+entity Inventar
+{
+	nummer Integer required min(1),
+    angeschafftAm LocalDate,
+    ausgemustertAm LocalDate,
+}
+
+entity Schutzausruestung
+{
+	nummer Integer required min(1),
+    angeschafftAm LocalDate,
+    ausgemustertAm LocalDate,
+    groesse String required
+}
+
+entity Auspraegung
+{
+	bezeichnung String required
+}
+
+entity Fahrzeug
+{
+	nummer Integer required min(1),
+    angeschafftAm LocalDate,
+    ausgemustertAm LocalDate,
+    nummernschild String required pattern("[A-Z]{1,3}\-[A-Z]{0,2}\s?[0-9]+"),
+    funkrufname String required pattern("([0-9]+\/)?[0-9]{2}\/[0-9]+")
+}
+
+entity AtemschutzInventar
+{
+	nummer Integer required min(1),
+    angeschafftAm LocalDate,
+    ausgemustertAm LocalDate
+}
+
+entity Reinigung
+{
+	durchfuehrung LocalDate
+}
+
+entity Wartung
+{
+	bezeichnung String required,
+	beginn LocalDate required,
+    letzteWartung LocalDate,
+    intervallWert Integer required min(1),
+    intervallEinheit IntervallEinheit required,
+    kosten Integer required min(0)
+}
+
+entity Pruefung
+{
+	bezeichnung String required,
+    beginn LocalDate required,
+    letztePruefung LocalDate,
+    intervallWert Integer required min(1),
+    intervallEinheit IntervallEinheit required,
+    kosten Integer required min(0)
+}
+
+entity DurchfuehrungPruefung
+{
+	datum LocalDate required,
+    kosten Integer
+}
+
+entity DurchfuehrungWartung
+{
+	datum LocalDate required,
+    kosten Integer
+}
+
+relationship OneToOne
+{
+	Inventar{kategorie(titel)} to InventarKategorie,
+        
+    Schutzausruestung{kategorie(titel)} to InventarKategorie,
+    Schutzausruestung{auspraegung(bezeichnung)} to Auspraegung,
+        
+    Fahrzeug{kategorie(titel)} to InventarKategorie,    
+    AtemschutzInventar{kategorie(titel)} to InventarKategorie,
+    
+    DurchfuehrungWartung{definition(datum)} to Wartung,
+    DurchfuehrungPruefung{definition(datum)} to Pruefung
+}
+
+relationship OneToMany
+{
+	InventarKategorie{unterkategorie(titel)} to InventarKategorie{uebergeordneteKategorie(titel)},
+    InventarKategorie{wartungen(bezeichnung)} to Wartung,
+    InventarKategorie{pruefungen(bezeichnung)} to Pruefung,
+    
+	Person{schutzausruestung(nummer)} to Schutzausruestung{besitzer(nachname)},
+    
+    Inventar{durchgefuehrteWartungen(datum)} to DurchfuehrungWartung,
+    Inventar{durchgefuehrtePruefungen(datum)} to DurchfuehrungPruefung,
+    
+    AtemschutzInventar{durchgefuehrteWartungen(bezeichnung)} to DurchfuehrungWartung,
+    AtemschutzInventar{durchgefuehrtePruefungen(bezeichnung)} to DurchfuehrungPruefung,
+    
+    Fahrzeug{durchgefuehrteWartungen(bezeichnung)} to DurchfuehrungWartung,
+    Fahrzeug{durchgefuehrtePruefungen(bezeichnung)} to DurchfuehrungPruefung,
+    
+    Schutzausruestung{durchgefuehrteWartungen(bezeichnung)} to DurchfuehrungWartung,
+    Schutzausruestung{durchgefuehrtePruefungen(durchfuehrung)} to DurchfuehrungPruefung
+}
+
+entity Berichtselement
+{
+	beginn Instant required,
+    ende Instant required,
+    titel String required,
+    beschreibung String required,
+    stunden Integer required min(0),
+    kategorie Berichtskategorie
+}
+
+enum Berichtskategorie
+{
+	UEBUNG, EINSATZ, WEHR, AUSBILDUNG, JUGEND, LEISTUNGSPRUEFUNG, VEREIN
+}
+
+// Set pagination options
+paginate * with infinite-scroll
+//paginate Job with pagination
+
+//dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except Employee, Job
+service Person with serviceImpl
+
+// Set an angular suffix
+angularSuffix * with ff

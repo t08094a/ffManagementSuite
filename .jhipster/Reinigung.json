@@ -1,0 +1,17 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "durchfuehrung",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20171015181342",
+    "entityTableName": "reinigung",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "ff",
+    "enableEntityAudit": true
+}

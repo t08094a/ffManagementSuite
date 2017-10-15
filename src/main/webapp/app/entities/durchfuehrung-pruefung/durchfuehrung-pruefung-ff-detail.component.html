@@ -1,0 +1,59 @@
+
+<div *ngIf="durchfuehrungPruefung">
+    <h2><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.detail.title">Durchfuehrung Pruefung</span> {{durchfuehrungPruefung.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.datum">Datum</span></dt>
+        <dd>
+            <span>{{durchfuehrungPruefung.datum | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.kosten">Kosten</span></dt>
+        <dd>
+            <span>{{durchfuehrungPruefung.kosten}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.inventar">Inventar</span></dt>
+        <dd>
+            <div *ngIf="durchfuehrungPruefung.inventar">
+                <a [routerLink]="['/inventar-ff', durchfuehrungPruefung.inventar?.id]">{{durchfuehrungPruefung.inventar?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.schutzausruestung">Schutzausruestung</span></dt>
+        <dd>
+            <div *ngIf="durchfuehrungPruefung.schutzausruestung">
+                <a [routerLink]="['/schutzausruestung-ff', durchfuehrungPruefung.schutzausruestung?.id]">{{durchfuehrungPruefung.schutzausruestung?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.fahrzeug">Fahrzeug</span></dt>
+        <dd>
+            <div *ngIf="durchfuehrungPruefung.fahrzeug">
+                <a [routerLink]="['/fahrzeug-ff', durchfuehrungPruefung.fahrzeug?.id]">{{durchfuehrungPruefung.fahrzeug?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.atemschutzInventar">Atemschutz Inventar</span></dt>
+        <dd>
+            <div *ngIf="durchfuehrungPruefung.atemschutzInventar">
+                <a [routerLink]="['/atemschutz-inventar-ff', durchfuehrungPruefung.atemschutzInventar?.id]">{{durchfuehrungPruefung.atemschutzInventar?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.durchfuehrungPruefung.definition">Definition</span></dt>
+        <dd>
+            <div *ngIf="durchfuehrungPruefung.definition">
+                <a [routerLink]="['/pruefung-ff', durchfuehrungPruefung.definition?.id]">{{durchfuehrungPruefung.definition?.datum}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'durchfuehrung-pruefung-ff/'+ durchfuehrungPruefung.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

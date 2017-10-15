@@ -1,0 +1,35 @@
+
+<div *ngIf="lehrgang">
+    <h2><span jhiTranslate="ffManagementSuiteApp.lehrgang.detail.title">Lehrgang</span> {{lehrgang.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.lehrgang.titel">Titel</span></dt>
+        <dd>
+            <span>{{lehrgang.titel}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.lehrgang.abkuerzung">Abkuerzung</span></dt>
+        <dd>
+            <span>{{lehrgang.abkuerzung}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.lehrgang.lehrgang">Lehrgang</span></dt>
+        <dd>
+            <div *ngIf="lehrgang.lehrgang">
+                <a [routerLink]="['/lehrgang-ff', lehrgang.lehrgang?.id]">{{lehrgang.lehrgang?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'lehrgang-ff/'+ lehrgang.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

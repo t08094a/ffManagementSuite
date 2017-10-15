@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "inventar",
+            "otherEntityName": "inventar",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "schutzausruestung",
+            "otherEntityName": "schutzausruestung",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "fahrzeug",
+            "otherEntityName": "fahrzeug",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "atemschutzInventar",
+            "otherEntityName": "atemschutzInventar",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "definition",
+            "otherEntityName": "pruefung",
+            "otherEntityField": "datum",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "durchfuehrungPruefung"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "datum",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "kosten",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20171015181345",
+    "entityTableName": "durchfuehrung_pruefung",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "ff",
+    "enableEntityAudit": true
+}

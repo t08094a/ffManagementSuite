@@ -1,0 +1,23 @@
+{
+    "ffManagementSuiteApp": {
+        "dienstzeit" : {
+            "home": {
+                "title": "Dienstzeiten",
+                "createLabel": "Dienstzeit erstellen",
+                "createOrEditLabel": "Dienstzeit erstellen oder bearbeiten"
+            },
+            "created": "Dienstzeit erstellt mit ID {{ param }}",
+            "updated": "Dienstzeit aktualisiert mit ID {{ param }}",
+            "deleted": "Dienstzeit gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die Dienstzeit {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Dienstzeit"
+            },
+            "beginn": "Beginn",
+            "ende": "Ende",
+            "person": "Person"
+        }
+    }
+}

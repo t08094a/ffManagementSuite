@@ -1,0 +1,112 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBerichtselementLabel" jhiTranslate="ffManagementSuiteApp.berichtselement.home.createOrEditLabel">Create or edit a Berichtselement</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!berichtselement.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="berichtselement.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.berichtselement.beginn" for="field_beginn">Beginn</label>
+            <div class="d-flex">
+                <input id="field_beginn" type="datetime-local" class="form-control" name="beginn" [(ngModel)]="berichtselement.beginn"
+                required  />
+            </div>
+            <div [hidden]="!(editForm.controls.beginn?.dirty && editForm.controls.beginn?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.beginn?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.beginn?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.berichtselement.ende" for="field_ende">Ende</label>
+            <div class="d-flex">
+                <input id="field_ende" type="datetime-local" class="form-control" name="ende" [(ngModel)]="berichtselement.ende"
+                required  />
+            </div>
+            <div [hidden]="!(editForm.controls.ende?.dirty && editForm.controls.ende?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.ende?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.ende?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.berichtselement.titel" for="field_titel">Titel</label>
+            <input type="text" class="form-control" name="titel" id="field_titel"
+                [(ngModel)]="berichtselement.titel" required />
+            <div [hidden]="!(editForm.controls.titel?.dirty && editForm.controls.titel?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.titel?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.berichtselement.beschreibung" for="field_beschreibung">Beschreibung</label>
+            <input type="text" class="form-control" name="beschreibung" id="field_beschreibung"
+                [(ngModel)]="berichtselement.beschreibung" required />
+            <div [hidden]="!(editForm.controls.beschreibung?.dirty && editForm.controls.beschreibung?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.beschreibung?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.berichtselement.stunden" for="field_stunden">Stunden</label>
+            <input type="number" class="form-control" name="stunden" id="field_stunden"
+                [(ngModel)]="berichtselement.stunden" required min="0" />
+            <div [hidden]="!(editForm.controls.stunden?.dirty && editForm.controls.stunden?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.stunden?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.stunden?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.stunden?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.berichtselement.kategorie" for="field_kategorie">Kategorie</label>
+            <select class="form-control" name="kategorie" [(ngModel)]="berichtselement.kategorie" id="field_kategorie" >
+                <option value="UEBUNG">{{'ffManagementSuiteApp.Berichtskategorie.UEBUNG' | translate}}</option>
+                <option value="EINSATZ">{{'ffManagementSuiteApp.Berichtskategorie.EINSATZ' | translate}}</option>
+                <option value="WEHR">{{'ffManagementSuiteApp.Berichtskategorie.WEHR' | translate}}</option>
+                <option value="AUSBILDUNG">{{'ffManagementSuiteApp.Berichtskategorie.AUSBILDUNG' | translate}}</option>
+                <option value="JUGEND">{{'ffManagementSuiteApp.Berichtskategorie.JUGEND' | translate}}</option>
+                <option value="LEISTUNGSPRUEFUNG">{{'ffManagementSuiteApp.Berichtskategorie.LEISTUNGSPRUEFUNG' | translate}}</option>
+                <option value="VEREIN">{{'ffManagementSuiteApp.Berichtskategorie.VEREIN' | translate}}</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

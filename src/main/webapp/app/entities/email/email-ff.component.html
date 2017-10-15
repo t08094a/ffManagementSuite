@@ -1,0 +1,64 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.email.home.title">Emails</span>
+        <button class="btn btn-primary float-right jh-create-entity create-email-ff" [routerLink]="['/', { outlets: { popup: ['email-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.email.home.createLabel">
+            Create new Email
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="emails">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typ"><span jhiTranslate="ffManagementSuiteApp.email.typ">Typ</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="adresse"><span jhiTranslate="ffManagementSuiteApp.email.adresse">Adresse</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="person.id"><span jhiTranslate="ffManagementSuiteApp.email.person">Person</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let email of emails ;trackBy: trackId">
+                <td><a [routerLink]="['../email-ff', email.id ]">{{email.id}}</a></td>
+                <td>{{email.typ}}</td>
+                <td>{{email.adresse}}</td>
+                <td>
+                    <div *ngIf="email.person">
+                        <a [routerLink]="['../person-ff', email.person?.id ]" >{{email.person?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../email-ff', email.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'email-ff/'+ email.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'email-ff/'+ email.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

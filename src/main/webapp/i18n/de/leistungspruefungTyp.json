@@ -1,0 +1,9 @@
+{
+    "ffManagementSuiteApp": {
+        "LeistungspruefungTyp" : {
+            "null": "",
+            "LOESCHANGRIFF": "Löschangriff",
+            "THL": "THL"
+        }
+    }
+}

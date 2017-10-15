@@ -1,0 +1,23 @@
+{
+    "ffManagementSuiteApp": {
+        "organisationsstruktur" : {
+            "home": {
+                "title": "Organisationsstruktur",
+                "createLabel": "Organisationsstruktur erstellen",
+                "createOrEditLabel": "Organisationsstruktur erstellen oder bearbeiten"
+            },
+            "created": "Organisationsstruktur erstellt mit ID {{ param }}",
+            "updated": "Organisationsstruktur aktualisiert mit ID {{ param }}",
+            "deleted": "Organisationsstruktur gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die Organisationsstruktur {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Organisationsstruktur"
+            },
+            "name": "Name",
+            "gegliedertIn": "Gegliedert in",
+            "parent": "gehört zu"
+        }
+    }
+}

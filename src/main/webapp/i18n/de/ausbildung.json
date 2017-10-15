@@ -1,0 +1,25 @@
+{
+    "ffManagementSuiteApp": {
+        "ausbildung" : {
+            "home": {
+                "title": "Ausbildungen",
+                "createLabel": "Ausbildung erstellen",
+                "createOrEditLabel": "Ausbildung erstellen oder bearbeiten"
+            },
+            "created": "Ausbildung erstellt mit ID {{ param }}",
+            "updated": "Ausbildung aktualisiert mit ID {{ param }}",
+            "deleted": "Ausbildung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Ausbildung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Ausbildung"
+            },
+            "beginn": "Beginn",
+            "ende": "Ende",
+            "zeugnis": "Zeugnis",
+            "person": "Person",
+            "lehrgang": "Lehrgang"
+        }
+    }
+}

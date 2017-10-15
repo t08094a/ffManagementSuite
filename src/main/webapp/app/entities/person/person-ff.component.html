@@ -1,0 +1,88 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.person.home.title">People</span>
+        <button class="btn btn-primary float-right jh-create-entity create-person-ff" [routerLink]="['/', { outlets: { popup: ['person-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.person.home.createLabel">
+            Create new Person
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="people">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vorname"><span jhiTranslate="ffManagementSuiteApp.person.vorname">Vorname</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nachname"><span jhiTranslate="ffManagementSuiteApp.person.nachname">Nachname</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="geburtsdatum"><span jhiTranslate="ffManagementSuiteApp.person.geburtsdatum">Geburtsdatum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="strasse"><span jhiTranslate="ffManagementSuiteApp.person.strasse">Strasse</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hausnummer"><span jhiTranslate="ffManagementSuiteApp.person.hausnummer">Hausnummer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="appendix"><span jhiTranslate="ffManagementSuiteApp.person.appendix">Appendix</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="postleitzahl"><span jhiTranslate="ffManagementSuiteApp.person.postleitzahl">Postleitzahl</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ort"><span jhiTranslate="ffManagementSuiteApp.person.ort">Ort</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span jhiTranslate="ffManagementSuiteApp.person.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ehrung25Jahre"><span jhiTranslate="ffManagementSuiteApp.person.ehrung25Jahre">Ehrung 25 Jahre</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ehrung40Jahre"><span jhiTranslate="ffManagementSuiteApp.person.ehrung40Jahre">Ehrung 40 Jahre</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="zugehoerigkeit.name"><span jhiTranslate="ffManagementSuiteApp.person.zugehoerigkeit">Zugehoerigkeit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="inDienststellung.titel"><span jhiTranslate="ffManagementSuiteApp.person.inDienststellung">In Dienststellung</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let person of people ;trackBy: trackId">
+                <td><a [routerLink]="['../person-ff', person.id ]">{{person.id}}</a></td>
+                <td>{{person.vorname}}</td>
+                <td>{{person.nachname}}</td>
+                <td>{{person.geburtsdatum | date:'mediumDate'}}</td>
+                <td>{{person.strasse}}</td>
+                <td>{{person.hausnummer}}</td>
+                <td>{{person.appendix}}</td>
+                <td>{{person.postleitzahl}}</td>
+                <td>{{person.ort}}</td>
+                <td jhiTranslate="{{'ffManagementSuiteApp.Mitgliedsstatus.' + person.status}}">{{person.status}}</td>
+                <td>{{person.ehrung25Jahre | date:'mediumDate'}}</td>
+                <td>{{person.ehrung40Jahre | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="person.zugehoerigkeit">
+                        <a [routerLink]="['../organisationsstruktur-ff', person.zugehoerigkeit?.id ]" >{{person.zugehoerigkeit?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="person.inDienststellung">
+                        <a [routerLink]="['../dienststellung-ff', person.inDienststellung?.id ]" >{{person.inDienststellung?.titel}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../person-ff', person.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'person-ff/'+ person.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'person-ff/'+ person.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

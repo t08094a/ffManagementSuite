@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181325_added_entity_Person.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181326_added_entity_Erreichbarkeit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181327_added_entity_Email.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181328_added_entity_Ausbildung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181329_added_entity_Lehrgang.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181330_added_entity_Organisationsstruktur.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181331_added_entity_Dienstzeit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181332_added_entity_Leistungspruefung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181333_added_entity_Fuehrerschein.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181334_added_entity_Verfuegbarkeit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181335_added_entity_Dienststellung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181336_added_entity_InventarKategorie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181337_added_entity_Inventar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181338_added_entity_Schutzausruestung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181339_added_entity_Auspraegung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181340_added_entity_Fahrzeug.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181341_added_entity_AtemschutzInventar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181342_added_entity_Reinigung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181343_added_entity_Wartung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181344_added_entity_Pruefung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181345_added_entity_DurchfuehrungPruefung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181346_added_entity_DurchfuehrungWartung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181347_added_entity_Berichtselement.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20171015181325_added_entity_constraints_Person.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181326_added_entity_constraints_Erreichbarkeit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181327_added_entity_constraints_Email.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181328_added_entity_constraints_Ausbildung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181329_added_entity_constraints_Lehrgang.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181330_added_entity_constraints_Organisationsstruktur.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181331_added_entity_constraints_Dienstzeit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181332_added_entity_constraints_Leistungspruefung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181336_added_entity_constraints_InventarKategorie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181337_added_entity_constraints_Inventar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181338_added_entity_constraints_Schutzausruestung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181340_added_entity_constraints_Fahrzeug.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181341_added_entity_constraints_AtemschutzInventar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181343_added_entity_constraints_Wartung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181344_added_entity_constraints_Pruefung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181345_added_entity_constraints_DurchfuehrungPruefung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171015181346_added_entity_constraints_DurchfuehrungWartung.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

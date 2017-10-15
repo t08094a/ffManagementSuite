@@ -1,0 +1,25 @@
+{
+    "ffManagementSuiteApp": {
+        "inventarKategorie" : {
+            "home": {
+                "title": "Inventar Kategorien",
+                "createLabel": "Kategorie erstellen",
+                "createOrEditLabel": "Kategorie erstellen oder bearbeiten"
+            },
+            "created": "Kategorie erstellt mit ID {{ param }}",
+            "updated": "Kategorie aktualisiert mit ID {{ param }}",
+            "deleted": "Kategorie gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die Kategorie {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Inventar Kategorie"
+            },
+            "titel": "Titel",
+            "unterkategorie": "Unterkategorie",
+            "wartungen": "Wartungen",
+            "pruefungen": "Prüfungen",
+            "uebergeordneteKategorie": "Übergeordnete Kategorie"
+        }
+    }
+}

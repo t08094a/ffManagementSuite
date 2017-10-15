@@ -1,0 +1,45 @@
+
+<div *ngIf="berichtselement">
+    <h2><span jhiTranslate="ffManagementSuiteApp.berichtselement.detail.title">Berichtselement</span> {{berichtselement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.berichtselement.beginn">Beginn</span></dt>
+        <dd>
+            <span>{{berichtselement.beginn | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.berichtselement.ende">Ende</span></dt>
+        <dd>
+            <span>{{berichtselement.ende | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.berichtselement.titel">Titel</span></dt>
+        <dd>
+            <span>{{berichtselement.titel}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.berichtselement.beschreibung">Beschreibung</span></dt>
+        <dd>
+            <span>{{berichtselement.beschreibung}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.berichtselement.stunden">Stunden</span></dt>
+        <dd>
+            <span>{{berichtselement.stunden}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.berichtselement.kategorie">Kategorie</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ffManagementSuiteApp.Berichtskategorie.' + berichtselement.kategorie}}">{{berichtselement.kategorie}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'berichtselement-ff/'+ berichtselement.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

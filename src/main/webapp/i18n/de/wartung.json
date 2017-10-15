@@ -1,0 +1,27 @@
+{
+    "ffManagementSuiteApp": {
+        "wartung" : {
+            "home": {
+                "title": "Wartungs",
+                "createLabel": "Wartung erstellen",
+                "createOrEditLabel": "Wartung erstellen oder bearbeiten"
+            },
+            "created": "Wartung erstellt mit ID {{ param }}",
+            "updated": "Wartung aktualisiert mit ID {{ param }}",
+            "deleted": "Wartung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Wartung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Wartung"
+            },
+            "bezeichnung": "Bezeichnung",
+            "beginn": "Beginn",
+            "letzteWartung": "Letzte Wartung",
+            "intervallWert": "Intervall Wert",
+            "intervallEinheit": "Intervall Einheit",
+            "kosten": "Kosten",
+            "inventarKategorie": "Inventar Kategorie"
+        }
+    }
+}

@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.fahrzeug.home.title">Fahrzeugs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-fahrzeug-ff" [routerLink]="['/', { outlets: { popup: ['fahrzeug-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.fahrzeug.home.createLabel">
+            Create new Fahrzeug
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="fahrzeugs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nummer"><span jhiTranslate="ffManagementSuiteApp.fahrzeug.nummer">Nummer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="angeschafftAm"><span jhiTranslate="ffManagementSuiteApp.fahrzeug.angeschafftAm">Angeschafft Am</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ausgemustertAm"><span jhiTranslate="ffManagementSuiteApp.fahrzeug.ausgemustertAm">Ausgemustert Am</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nummernschild"><span jhiTranslate="ffManagementSuiteApp.fahrzeug.nummernschild">Nummernschild</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="funkrufname"><span jhiTranslate="ffManagementSuiteApp.fahrzeug.funkrufname">Funkrufname</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="kategorie.titel"><span jhiTranslate="ffManagementSuiteApp.fahrzeug.kategorie">Kategorie</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let fahrzeug of fahrzeugs ;trackBy: trackId">
+                <td><a [routerLink]="['../fahrzeug-ff', fahrzeug.id ]">{{fahrzeug.id}}</a></td>
+                <td>{{fahrzeug.nummer}}</td>
+                <td>{{fahrzeug.angeschafftAm | date:'mediumDate'}}</td>
+                <td>{{fahrzeug.ausgemustertAm | date:'mediumDate'}}</td>
+                <td>{{fahrzeug.nummernschild}}</td>
+                <td>{{fahrzeug.funkrufname}}</td>
+                <td>
+                    <div *ngIf="fahrzeug.kategorie">
+                        <a [routerLink]="['../inventar-kategorie-ff', fahrzeug.kategorie?.id ]" >{{fahrzeug.kategorie?.titel}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../fahrzeug-ff', fahrzeug.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'fahrzeug-ff/'+ fahrzeug.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'fahrzeug-ff/'+ fahrzeug.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

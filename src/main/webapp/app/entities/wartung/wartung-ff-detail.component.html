@@ -1,0 +1,51 @@
+
+<div *ngIf="wartung">
+    <h2><span jhiTranslate="ffManagementSuiteApp.wartung.detail.title">Wartung</span> {{wartung.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.wartung.bezeichnung">Bezeichnung</span></dt>
+        <dd>
+            <span>{{wartung.bezeichnung}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.wartung.beginn">Beginn</span></dt>
+        <dd>
+            <span>{{wartung.beginn | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.wartung.letzteWartung">Letzte Wartung</span></dt>
+        <dd>
+            <span>{{wartung.letzteWartung | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.wartung.intervallWert">Intervall Wert</span></dt>
+        <dd>
+            <span>{{wartung.intervallWert}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.wartung.intervallEinheit">Intervall Einheit</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ffManagementSuiteApp.IntervallEinheit.' + wartung.intervallEinheit}}">{{wartung.intervallEinheit}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.wartung.kosten">Kosten</span></dt>
+        <dd>
+            <span>{{wartung.kosten}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.wartung.inventarKategorie">Inventar Kategorie</span></dt>
+        <dd>
+            <div *ngIf="wartung.inventarKategorie">
+                <a [routerLink]="['/inventar-kategorie-ff', wartung.inventarKategorie?.id]">{{wartung.inventarKategorie?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'wartung-ff/'+ wartung.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

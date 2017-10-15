@@ -1,0 +1,21 @@
+{
+    "ffManagementSuiteApp": {
+        "fuehrerschein" : {
+            "home": {
+                "title": "Führerscheine",
+                "createLabel": "Führerschein erstellen",
+                "createOrEditLabel": "Führerschein erstellen oder bearbeiten"
+            },
+            "created": "Führerschein erstellt mit ID {{ param }}",
+            "updated": "Führerschein aktualisiert mit ID {{ param }}",
+            "deleted": "Führerschein gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll der Führerschein {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Führerschein"
+            },
+            "klasse": "Klasse"
+        }
+    }
+}

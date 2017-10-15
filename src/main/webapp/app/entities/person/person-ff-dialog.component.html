@@ -1,0 +1,204 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPersonLabel" jhiTranslate="ffManagementSuiteApp.person.home.createOrEditLabel">Create or edit a Person</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!person.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="person.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.vorname" for="field_vorname">Vorname</label>
+            <input type="text" class="form-control" name="vorname" id="field_vorname"
+                [(ngModel)]="person.vorname" required minlength="3" />
+            <div [hidden]="!(editForm.controls.vorname?.dirty && editForm.controls.vorname?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.vorname?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.vorname?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 3 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.nachname" for="field_nachname">Nachname</label>
+            <input type="text" class="form-control" name="nachname" id="field_nachname"
+                [(ngModel)]="person.nachname" required minlength="3" />
+            <div [hidden]="!(editForm.controls.nachname?.dirty && editForm.controls.nachname?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nachname?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nachname?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 3 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.geburtsdatum" for="field_geburtsdatum">Geburtsdatum</label>
+            <div class="input-group">
+                <input id="field_geburtsdatum" type="text" class="form-control" name="geburtsdatum" ngbDatepicker  #geburtsdatumDp="ngbDatepicker" [(ngModel)]="person.geburtsdatum"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="geburtsdatumDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.geburtsdatum?.dirty && editForm.controls.geburtsdatum?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.geburtsdatum?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.strasse" for="field_strasse">Strasse</label>
+            <input type="text" class="form-control" name="strasse" id="field_strasse"
+                [(ngModel)]="person.strasse" required minlength="3" />
+            <div [hidden]="!(editForm.controls.strasse?.dirty && editForm.controls.strasse?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.strasse?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.strasse?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 3 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.hausnummer" for="field_hausnummer">Hausnummer</label>
+            <input type="number" class="form-control" name="hausnummer" id="field_hausnummer"
+                [(ngModel)]="person.hausnummer" required min="1" />
+            <div [hidden]="!(editForm.controls.hausnummer?.dirty && editForm.controls.hausnummer?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.hausnummer?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.hausnummer?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 1 }">
+                    This field should be at least 1.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.hausnummer?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.appendix" for="field_appendix">Appendix</label>
+            <input type="text" class="form-control" name="appendix" id="field_appendix"
+                [(ngModel)]="person.appendix"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.postleitzahl" for="field_postleitzahl">Postleitzahl</label>
+            <input type="text" class="form-control" name="postleitzahl" id="field_postleitzahl"
+                [(ngModel)]="person.postleitzahl" required minlength="5" maxlength="5" />
+            <div [hidden]="!(editForm.controls.postleitzahl?.dirty && editForm.controls.postleitzahl?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.postleitzahl?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.postleitzahl?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 5 }">
+                   This field is required to be at least 5 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.postleitzahl?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 5 }">
+                   This field cannot be longer than 5 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.ort" for="field_ort">Ort</label>
+            <input type="text" class="form-control" name="ort" id="field_ort"
+                [(ngModel)]="person.ort" required minlength="3" />
+            <div [hidden]="!(editForm.controls.ort?.dirty && editForm.controls.ort?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.ort?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.ort?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 3 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="person.status" id="field_status"  required>
+                <option value="AKTIV">{{'ffManagementSuiteApp.Mitgliedsstatus.AKTIV' | translate}}</option>
+                <option value="PASSIV">{{'ffManagementSuiteApp.Mitgliedsstatus.PASSIV' | translate}}</option>
+                <option value="FOERDERND">{{'ffManagementSuiteApp.Mitgliedsstatus.FOERDERND' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.ehrung25Jahre" for="field_ehrung25Jahre">Ehrung 25 Jahre</label>
+            <div class="input-group">
+                <input id="field_ehrung25Jahre" type="text" class="form-control" name="ehrung25Jahre" ngbDatepicker  #ehrung25JahreDp="ngbDatepicker" [(ngModel)]="person.ehrung25Jahre"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="ehrung25JahreDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.ehrung40Jahre" for="field_ehrung40Jahre">Ehrung 40 Jahre</label>
+            <div class="input-group">
+                <input id="field_ehrung40Jahre" type="text" class="form-control" name="ehrung40Jahre" ngbDatepicker  #ehrung40JahreDp="ngbDatepicker" [(ngModel)]="person.ehrung40Jahre"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="ehrung40JahreDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.zugehoerigkeit" for="field_zugehoerigkeit">Zugehoerigkeit</label>
+            <select class="form-control" id="field_zugehoerigkeit" name="zugehoerigkeit" [(ngModel)]="person.zugehoerigkeit">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="organisationsstrukturOption.id === person.zugehoerigkeit?.id ? person.zugehoerigkeit : organisationsstrukturOption" *ngFor="let organisationsstrukturOption of zugehoerigkeits; trackBy: trackOrganisationsstrukturById">{{organisationsstrukturOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.person.inDienststellung" for="field_inDienststellung">In Dienststellung</label>
+            <select class="form-control" id="field_inDienststellung" name="inDienststellung" [(ngModel)]="person.inDienststellung" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="dienststellungOption.id === person.inDienststellung?.id ? person.inDienststellung : dienststellungOption" *ngFor="let dienststellungOption of dienststellungs; trackBy: trackDienststellungById">{{dienststellungOption.titel}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="ffManagementSuiteApp.person.fuehrerscheine" for="field_fuehrerscheine">Fuehrerscheine</label>
+            <select class="form-control" id="field_fuehrerscheine" multiple name="fuehrerscheine" [(ngModel)]="person.fuehrerscheines">
+                <option [ngValue]="getSelected(person.fuehrerscheines, fuehrerscheinOption)" *ngFor="let fuehrerscheinOption of fuehrerscheins; trackBy: trackFuehrerscheinById">{{fuehrerscheinOption.klasse}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="ffManagementSuiteApp.person.verfuegbarkeiten" for="field_verfuegbarkeiten">Verfuegbarkeiten</label>
+            <select class="form-control" id="field_verfuegbarkeiten" multiple name="verfuegbarkeiten" [(ngModel)]="person.verfuegbarkeitens">
+                <option [ngValue]="getSelected(person.verfuegbarkeitens, verfuegbarkeitOption)" *ngFor="let verfuegbarkeitOption of verfuegbarkeits; trackBy: trackVerfuegbarkeitById">{{verfuegbarkeitOption.titel}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

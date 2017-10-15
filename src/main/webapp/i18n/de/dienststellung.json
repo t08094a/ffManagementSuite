@@ -1,0 +1,22 @@
+{
+    "ffManagementSuiteApp": {
+        "dienststellung" : {
+            "home": {
+                "title": "Dienststellungen",
+                "createLabel": "In Dienststellung erstellen",
+                "createOrEditLabel": "In Dienststellung erstellen oder bearbeiten"
+            },
+            "created": "In Dienststellung erstellt mit ID {{ param }}",
+            "updated": "In Dienststellung aktualisiert mit ID {{ param }}",
+            "deleted": "In Dienststellung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die In Dienststellung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "In Dienststellung"
+            },
+            "titel": "Titel",
+            "abkuerzung": "Abkürzung"
+        }
+    }
+}

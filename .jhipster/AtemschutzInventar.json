@@ -1,0 +1,51 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "kategorie",
+            "otherEntityName": "inventarKategorie",
+            "otherEntityField": "titel",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "atemschutzInventar"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "durchgefuehrteWartungen",
+            "otherEntityName": "durchfuehrungWartung",
+            "otherEntityRelationshipName": "atemschutzInventar"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "durchgefuehrtePruefungen",
+            "otherEntityName": "durchfuehrungPruefung",
+            "otherEntityRelationshipName": "atemschutzInventar"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nummer",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 1
+        },
+        {
+            "fieldName": "angeschafftAm",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "ausgemustertAm",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20171015181341",
+    "entityTableName": "atemschutz_inventar",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "ff",
+    "enableEntityAudit": true
+}

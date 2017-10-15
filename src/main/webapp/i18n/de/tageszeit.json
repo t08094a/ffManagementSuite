@@ -1,0 +1,9 @@
+{
+    "ffManagementSuiteApp": {
+        "Tageszeit" : {
+            "null": "",
+            "TAG": "Tag",
+            "NACHT": "Nacht"
+        }
+    }
+}

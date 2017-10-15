@@ -1,0 +1,24 @@
+{
+    "ffManagementSuiteApp": {
+        "leistungspruefung" : {
+            "home": {
+                "title": "Leistungsprüfungen",
+                "createLabel": "Leistungsprüfung erstellen",
+                "createOrEditLabel": "Leistungsprüfung erstellen oder bearbeiten"
+            },
+            "created": "Leistungsprüfung erstellt mit ID {{ param }}",
+            "updated": "Leistungsprüfung aktualisiert mit ID {{ param }}",
+            "deleted": "Leistungsprüfung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die Leistungsprüfung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Leistungsprüfung"
+            },
+            "typ": "Typ",
+            "stufe": "Stufe",
+            "abgelegtAm": "Abgelegt am",
+            "teilnehmer": "Teilnehmer"
+        }
+    }
+}

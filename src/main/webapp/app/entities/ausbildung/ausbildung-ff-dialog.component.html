@@ -1,0 +1,88 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAusbildungLabel" jhiTranslate="ffManagementSuiteApp.ausbildung.home.createOrEditLabel">Create or edit a Ausbildung</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!ausbildung.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="ausbildung.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.ausbildung.beginn" for="field_beginn">Beginn</label>
+            <div class="input-group">
+                <input id="field_beginn" type="text" class="form-control" name="beginn" ngbDatepicker  #beginnDp="ngbDatepicker" [(ngModel)]="ausbildung.beginn"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="beginnDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.beginn?.dirty && editForm.controls.beginn?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.beginn?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.ausbildung.ende" for="field_ende">Ende</label>
+            <div class="input-group">
+                <input id="field_ende" type="text" class="form-control" name="ende" ngbDatepicker  #endeDp="ngbDatepicker" [(ngModel)]="ausbildung.ende"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="endeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.ende?.dirty && editForm.controls.ende?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.ende?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.ausbildung.zeugnis" for="field_zeugnis">Zeugnis</label>
+            <div>
+                <img [src]="'data:' + ausbildung.zeugnisContentType + ';base64,' + ausbildung.zeugnis" style="max-height: 100px;" *ngIf="ausbildung.zeugnis" alt="ausbildung image"/>
+                <div *ngIf="ausbildung.zeugnis" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{ausbildung.zeugnisContentType}}, {{byteSize(ausbildung.zeugnis)}}</span>
+                    <button type="button" (click)="clearInputImage('zeugnis', 'zeugnisContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_zeugnis" (change)="setFileData($event, ausbildung, 'zeugnis', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="zeugnis" id="field_zeugnis"
+                [(ngModel)]="ausbildung.zeugnis"  />
+            <input type="hidden" class="form-control" name="zeugnisContentType" id="field_zeugnisContentType"
+                [(ngModel)]="ausbildung.zeugnisContentType" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.ausbildung.person" for="field_person">Person</label>
+            <select class="form-control" id="field_person" name="person" [(ngModel)]="ausbildung.person" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id === ausbildung.person?.id ? ausbildung.person : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.ausbildung.lehrgang" for="field_lehrgang">Lehrgang</label>
+            <select class="form-control" id="field_lehrgang" name="lehrgang" [(ngModel)]="ausbildung.lehrgang" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="lehrgangOption.id === ausbildung.lehrgang?.id ? ausbildung.lehrgang : lehrgangOption" *ngFor="let lehrgangOption of lehrgangs; trackBy: trackLehrgangById">{{lehrgangOption.titel}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

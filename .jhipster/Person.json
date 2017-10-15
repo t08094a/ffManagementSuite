@@ -1,0 +1,164 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "zugehoerigkeit",
+            "otherEntityName": "organisationsstruktur",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "person"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "erreichbarkeiten",
+            "otherEntityName": "erreichbarkeit",
+            "otherEntityRelationshipName": "person"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "emails",
+            "otherEntityName": "email",
+            "otherEntityRelationshipName": "person"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "dienstzeiten",
+            "otherEntityName": "dienstzeit",
+            "otherEntityRelationshipName": "person"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ausbildungen",
+            "otherEntityName": "ausbildung",
+            "otherEntityRelationshipName": "person"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "schutzausruestung",
+            "otherEntityName": "schutzausruestung",
+            "otherEntityRelationshipName": "besitzer"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "inDienststellung",
+            "otherEntityName": "dienststellung",
+            "otherEntityField": "titel"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "fuehrerscheine",
+            "otherEntityName": "fuehrerschein",
+            "otherEntityField": "klasse",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "verfuegbarkeiten",
+            "otherEntityName": "verfuegbarkeit",
+            "otherEntityField": "titel",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "leistungspruefungen",
+            "otherEntityName": "leistungspruefung",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "teilnehmer"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "vorname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 3
+        },
+        {
+            "fieldName": "nachname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 3
+        },
+        {
+            "fieldName": "geburtsdatum",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "strasse",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 3
+        },
+        {
+            "fieldName": "hausnummer",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 1
+        },
+        {
+            "fieldName": "appendix",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "postleitzahl",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 5,
+            "fieldValidateRulesMaxlength": 5
+        },
+        {
+            "fieldName": "ort",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 3
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Mitgliedsstatus",
+            "fieldValues": "AKTIV,PASSIV,FOERDERND",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ehrung25Jahre",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "ehrung40Jahre",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20171015181325",
+    "entityTableName": "person",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "angularJSSuffix": "ff",
+    "enableEntityAudit": true
+}

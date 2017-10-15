@@ -1,0 +1,27 @@
+{
+    "ffManagementSuiteApp": {
+        "durchfuehrungWartung" : {
+            "home": {
+                "title": "Durchfuehrung Wartungs",
+                "createLabel": "Durchfuehrung Wartung erstellen",
+                "createOrEditLabel": "Durchfuehrung Wartung erstellen oder bearbeiten"
+            },
+            "created": "Durchfuehrung Wartung erstellt mit ID {{ param }}",
+            "updated": "Durchfuehrung Wartung aktualisiert mit ID {{ param }}",
+            "deleted": "Durchfuehrung Wartung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Durchfuehrung Wartung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Durchfuehrung Wartung"
+            },
+            "datum": "Datum",
+            "kosten": "Kosten",
+            "inventar": "Inventar",
+            "schutzausruestung": "Schutzausruestung",
+            "fahrzeug": "Fahrzeug",
+            "atemschutzInventar": "Atemschutz Inventar",
+            "definition": "Definition"
+        }
+    }
+}

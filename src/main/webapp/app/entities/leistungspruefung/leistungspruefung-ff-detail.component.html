@@ -1,0 +1,39 @@
+
+<div *ngIf="leistungspruefung">
+    <h2><span jhiTranslate="ffManagementSuiteApp.leistungspruefung.detail.title">Leistungspruefung</span> {{leistungspruefung.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.leistungspruefung.typ">Typ</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ffManagementSuiteApp.LeistungspruefungTyp.' + leistungspruefung.typ}}">{{leistungspruefung.typ}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.leistungspruefung.stufe">Stufe</span></dt>
+        <dd>
+            <span>{{leistungspruefung.stufe}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.leistungspruefung.abgelegtAm">Abgelegt Am</span></dt>
+        <dd>
+            <span>{{leistungspruefung.abgelegtAm | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.leistungspruefung.teilnehmer">Teilnehmer</span></dt>
+        <dd>
+            <span *ngFor="let teilnehmer of leistungspruefung.teilnehmers; let last = last">
+                <a [routerLink]="['/person-ff', teilnehmer?.id ]">{{teilnehmer.nachname}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'leistungspruefung-ff/'+ leistungspruefung.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

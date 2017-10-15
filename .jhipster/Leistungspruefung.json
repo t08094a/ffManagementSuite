@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "leistungspruefungen",
+            "relationshipName": "teilnehmer",
+            "otherEntityName": "person",
+            "otherEntityField": "nachname",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "typ",
+            "fieldType": "LeistungspruefungTyp",
+            "fieldValues": "LOESCHANGRIFF,THL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "stufe",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 1,
+            "fieldValidateRulesMax": 6
+        },
+        {
+            "fieldName": "abgelegtAm",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171015181332",
+    "entityTableName": "leistungspruefung",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "ff",
+    "enableEntityAudit": true
+}

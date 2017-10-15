@@ -1,0 +1,89 @@
+
+<div *ngIf="person">
+    <h2><span jhiTranslate="ffManagementSuiteApp.person.detail.title">Person</span> {{person.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.vorname">Vorname</span></dt>
+        <dd>
+            <span>{{person.vorname}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.nachname">Nachname</span></dt>
+        <dd>
+            <span>{{person.nachname}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.geburtsdatum">Geburtsdatum</span></dt>
+        <dd>
+            <span>{{person.geburtsdatum | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.strasse">Strasse</span></dt>
+        <dd>
+            <span>{{person.strasse}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.hausnummer">Hausnummer</span></dt>
+        <dd>
+            <span>{{person.hausnummer}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.appendix">Appendix</span></dt>
+        <dd>
+            <span>{{person.appendix}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.postleitzahl">Postleitzahl</span></dt>
+        <dd>
+            <span>{{person.postleitzahl}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.ort">Ort</span></dt>
+        <dd>
+            <span>{{person.ort}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ffManagementSuiteApp.Mitgliedsstatus.' + person.status}}">{{person.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.ehrung25Jahre">Ehrung 25 Jahre</span></dt>
+        <dd>
+            <span>{{person.ehrung25Jahre | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.ehrung40Jahre">Ehrung 40 Jahre</span></dt>
+        <dd>
+            <span>{{person.ehrung40Jahre | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.zugehoerigkeit">Zugehoerigkeit</span></dt>
+        <dd>
+            <div *ngIf="person.zugehoerigkeit">
+                <a [routerLink]="['/organisationsstruktur-ff', person.zugehoerigkeit?.id]">{{person.zugehoerigkeit?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.inDienststellung">In Dienststellung</span></dt>
+        <dd>
+            <div *ngIf="person.inDienststellung">
+                <a [routerLink]="['/dienststellung-ff', person.inDienststellung?.id]">{{person.inDienststellung?.titel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.fuehrerscheine">Fuehrerscheine</span></dt>
+        <dd>
+            <span *ngFor="let fuehrerscheine of person.fuehrerscheines; let last = last">
+                <a [routerLink]="['/fuehrerschein-ff', fuehrerscheine?.id ]">{{fuehrerscheine.klasse}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.person.verfuegbarkeiten">Verfuegbarkeiten</span></dt>
+        <dd>
+            <span *ngFor="let verfuegbarkeiten of person.verfuegbarkeitens; let last = last">
+                <a [routerLink]="['/verfuegbarkeit-ff', verfuegbarkeiten?.id ]">{{verfuegbarkeiten.titel}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'person-ff/'+ person.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,26 @@
+{
+    "ffManagementSuiteApp": {
+        "inventar" : {
+            "home": {
+                "title": "Inventar",
+                "createLabel": "Inventar erstellen",
+                "createOrEditLabel": "Inventar erstellen oder bearbeiten"
+            },
+            "created": "Inventar erstellt mit ID {{ param }}",
+            "updated": "Inventar aktualisiert mit ID {{ param }}",
+            "deleted": "Inventar gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll das Inventar {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Inventar"
+            },
+            "nummer": "Nummer",
+            "angeschafftAm": "Angeschafft am",
+            "ausgemustertAm": "Ausgemustert am",
+            "kategorie": "Kategorie",
+            "durchgefuehrteWartungen": "Durchgeführte Wartungen",
+            "durchgefuehrtePruefungen": "Durchgeführte Prüfungen"
+        }
+    }
+}

@@ -1,0 +1,55 @@
+
+<div *ngIf="schutzausruestung">
+    <h2><span jhiTranslate="ffManagementSuiteApp.schutzausruestung.detail.title">Schutzausruestung</span> {{schutzausruestung.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.schutzausruestung.nummer">Nummer</span></dt>
+        <dd>
+            <span>{{schutzausruestung.nummer}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.schutzausruestung.angeschafftAm">Angeschafft Am</span></dt>
+        <dd>
+            <span>{{schutzausruestung.angeschafftAm | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.schutzausruestung.ausgemustertAm">Ausgemustert Am</span></dt>
+        <dd>
+            <span>{{schutzausruestung.ausgemustertAm | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.schutzausruestung.groesse">Groesse</span></dt>
+        <dd>
+            <span>{{schutzausruestung.groesse}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.schutzausruestung.kategorie">Kategorie</span></dt>
+        <dd>
+            <div *ngIf="schutzausruestung.kategorie">
+                <a [routerLink]="['/inventar-kategorie-ff', schutzausruestung.kategorie?.id]">{{schutzausruestung.kategorie?.titel}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.schutzausruestung.auspraegung">Auspraegung</span></dt>
+        <dd>
+            <div *ngIf="schutzausruestung.auspraegung">
+                <a [routerLink]="['/auspraegung-ff', schutzausruestung.auspraegung?.id]">{{schutzausruestung.auspraegung?.bezeichnung}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.schutzausruestung.besitzer">Besitzer</span></dt>
+        <dd>
+            <div *ngIf="schutzausruestung.besitzer">
+                <a [routerLink]="['/person-ff', schutzausruestung.besitzer?.id]">{{schutzausruestung.besitzer?.nachname}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'schutzausruestung-ff/'+ schutzausruestung.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

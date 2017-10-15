@@ -1,0 +1,24 @@
+{
+    "ffManagementSuiteApp": {
+        "lehrgang" : {
+            "home": {
+                "title": "Lehrgänge",
+                "createLabel": "Lehrgang erstellen",
+                "createOrEditLabel": "Lehrgang erstellen oder bearbeiten"
+            },
+            "created": "Lehrgang erstellt mit ID {{ param }}",
+            "updated": "Lehrgang aktualisiert mit ID {{ param }}",
+            "deleted": "Lehrgang gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll der Lehrgang {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Lehrgang"
+            },
+            "titel": "Titel",
+            "abkuerzung": "Abkürzung",
+            "lehrgang": "Lehrgang",
+            "voraussetzungen": "Voraussetzungen"
+        }
+    }
+}

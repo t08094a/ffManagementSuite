@@ -1,0 +1,14 @@
+{
+    "ffManagementSuiteApp": {
+        "Berichtskategorie" : {
+            "null": "",
+            "UEBUNG": "Übung",
+            "EINSATZ": "Einsatz",
+            "WEHR": "Wehr",
+            "AUSBILDUNG": "Ausbildung",
+            "JUGEND": "Jugend",
+            "LEISTUNGSPRUEFUNG": "Leistungsprüfung",
+            "VEREIN": "Verein"
+        }
+    }
+}

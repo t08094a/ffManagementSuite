@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "unterkategorie",
+            "otherEntityName": "inventarKategorie",
+            "otherEntityRelationshipName": "uebergeordneteKategorie"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "wartungen",
+            "otherEntityName": "wartung",
+            "otherEntityRelationshipName": "inventarKategorie"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pruefungen",
+            "otherEntityName": "pruefung",
+            "otherEntityRelationshipName": "inventarKategorie"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "uebergeordneteKategorie",
+            "otherEntityName": "inventarKategorie",
+            "otherEntityField": "titel"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "titel",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 3
+        }
+    ],
+    "changelogDate": "20171015181336",
+    "entityTableName": "inventar_kategorie",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "ff",
+    "enableEntityAudit": true
+}

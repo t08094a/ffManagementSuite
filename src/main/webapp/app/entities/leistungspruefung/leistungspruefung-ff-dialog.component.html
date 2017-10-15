@@ -1,0 +1,83 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLeistungspruefungLabel" jhiTranslate="ffManagementSuiteApp.leistungspruefung.home.createOrEditLabel">Create or edit a Leistungspruefung</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!leistungspruefung.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="leistungspruefung.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.leistungspruefung.typ" for="field_typ">Typ</label>
+            <select class="form-control" name="typ" [(ngModel)]="leistungspruefung.typ" id="field_typ"  required>
+                <option value="LOESCHANGRIFF">{{'ffManagementSuiteApp.LeistungspruefungTyp.LOESCHANGRIFF' | translate}}</option>
+                <option value="THL">{{'ffManagementSuiteApp.LeistungspruefungTyp.THL' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.typ?.dirty && editForm.controls.typ?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.typ?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.leistungspruefung.stufe" for="field_stufe">Stufe</label>
+            <input type="number" class="form-control" name="stufe" id="field_stufe"
+                [(ngModel)]="leistungspruefung.stufe" required min="1" max="6" />
+            <div [hidden]="!(editForm.controls.stufe?.dirty && editForm.controls.stufe?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.stufe?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.stufe?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 1 }">
+                    This field should be at least 1.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.stufe?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 6 }">
+                    This field cannot be more than 6.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.stufe?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ffManagementSuiteApp.leistungspruefung.abgelegtAm" for="field_abgelegtAm">Abgelegt Am</label>
+            <div class="input-group">
+                <input id="field_abgelegtAm" type="text" class="form-control" name="abgelegtAm" ngbDatepicker  #abgelegtAmDp="ngbDatepicker" [(ngModel)]="leistungspruefung.abgelegtAm"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="abgelegtAmDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.abgelegtAm?.dirty && editForm.controls.abgelegtAm?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.abgelegtAm?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="ffManagementSuiteApp.leistungspruefung.teilnehmer" for="field_teilnehmer">Teilnehmer</label>
+            <select class="form-control" id="field_teilnehmer" multiple name="teilnehmer" [(ngModel)]="leistungspruefung.teilnehmers">
+                <option [ngValue]="getSelected(leistungspruefung.teilnehmers, personOption)" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.nachname}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

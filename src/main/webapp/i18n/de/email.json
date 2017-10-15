@@ -1,0 +1,23 @@
+{
+    "ffManagementSuiteApp": {
+        "email" : {
+            "home": {
+                "title": "Emails",
+                "createLabel": "Email erstellen",
+                "createOrEditLabel": "Email erstellen oder bearbeiten"
+            },
+            "created": "Email erstellt mit ID {{ param }}",
+            "updated": "Email aktualisiert mit ID {{ param }}",
+            "deleted": "Email gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll die Email {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Email"
+            },
+            "typ": "Typ",
+            "adresse": "Adresse",
+            "person": "Person"
+        }
+    }
+}

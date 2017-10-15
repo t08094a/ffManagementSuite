@@ -1,0 +1,27 @@
+{
+    "ffManagementSuiteApp": {
+        "pruefung" : {
+            "home": {
+                "title": "Pruefungs",
+                "createLabel": "Pruefung erstellen",
+                "createOrEditLabel": "Pruefung erstellen oder bearbeiten"
+            },
+            "created": "Pruefung erstellt mit ID {{ param }}",
+            "updated": "Pruefung aktualisiert mit ID {{ param }}",
+            "deleted": "Pruefung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Pruefung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Pruefung"
+            },
+            "bezeichnung": "Bezeichnung",
+            "beginn": "Beginn",
+            "letztePruefung": "Letzte Pruefung",
+            "intervallWert": "Intervall Wert",
+            "intervallEinheit": "Intervall Einheit",
+            "kosten": "Kosten",
+            "inventarKategorie": "Inventar Kategorie"
+        }
+    }
+}

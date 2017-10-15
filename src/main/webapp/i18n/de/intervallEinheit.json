@@ -1,0 +1,9 @@
+{
+    "ffManagementSuiteApp": {
+        "IntervallEinheit" : {
+            "null": "",
+            "MONAT": "Monat",
+            "JAHR": "Jahr"
+        }
+    }
+}

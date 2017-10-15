@@ -1,0 +1,35 @@
+
+<div *ngIf="dienstzeit">
+    <h2><span jhiTranslate="ffManagementSuiteApp.dienstzeit.detail.title">Dienstzeit</span> {{dienstzeit.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.dienstzeit.beginn">Beginn</span></dt>
+        <dd>
+            <span>{{dienstzeit.beginn | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.dienstzeit.ende">Ende</span></dt>
+        <dd>
+            <span>{{dienstzeit.ende | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.dienstzeit.person">Person</span></dt>
+        <dd>
+            <div *ngIf="dienstzeit.person">
+                <a [routerLink]="['/person-ff', dienstzeit.person?.id]">{{dienstzeit.person?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'dienstzeit-ff/'+ dienstzeit.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Person.
+    -->
+    <changeSet id="20171015181325-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="zugehoerigkeit_id"
+                                 baseTableName="person"
+                                 constraintName="fk_person_zugehoerigkeit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organisationsstruktur"/>
+
+        <addForeignKeyConstraint baseColumnNames="in_dienststellung_id"
+                                 baseTableName="person"
+                                 constraintName="fk_person_in_dienststellung_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dienststellung"/>
+
+        <addForeignKeyConstraint baseColumnNames="people_id"
+                                 baseTableName="person_fuehrerscheine"
+                                 constraintName="fk_person_fuehrerscheine_people_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+        <addForeignKeyConstraint baseColumnNames="fuehrerscheines_id"
+                                 baseTableName="person_fuehrerscheine"
+                                 constraintName="fk_person_fuehrerscheine_fuehrerscheines_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fuehrerschein"/>
+        
+        <addForeignKeyConstraint baseColumnNames="people_id"
+                                 baseTableName="person_verfuegbarkeiten"
+                                 constraintName="fk_person_verfuegbarkeiten_people_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+        <addForeignKeyConstraint baseColumnNames="verfuegbarkeitens_id"
+                                 baseTableName="person_verfuegbarkeiten"
+                                 constraintName="fk_person_verfuegbarkeiten_verfuegbarkeitens_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="verfuegbarkeit"/>
+        
+    </changeSet>
+</databaseChangeLog>

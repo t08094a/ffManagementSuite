@@ -1,0 +1,27 @@
+{
+    "ffManagementSuiteApp": {
+        "durchfuehrungPruefung" : {
+            "home": {
+                "title": "Durchfuehrung Pruefungs",
+                "createLabel": "Durchfuehrung Pruefung erstellen",
+                "createOrEditLabel": "Durchfuehrung Pruefung erstellen oder bearbeiten"
+            },
+            "created": "Durchfuehrung Pruefung erstellt mit ID {{ param }}",
+            "updated": "Durchfuehrung Pruefung aktualisiert mit ID {{ param }}",
+            "deleted": "Durchfuehrung Pruefung gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Durchfuehrung Pruefung {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Durchfuehrung Pruefung"
+            },
+            "datum": "Datum",
+            "kosten": "Kosten",
+            "inventar": "Inventar",
+            "schutzausruestung": "Schutzausruestung",
+            "fahrzeug": "Fahrzeug",
+            "atemschutzInventar": "Atemschutz Inventar",
+            "definition": "Definition"
+        }
+    }
+}

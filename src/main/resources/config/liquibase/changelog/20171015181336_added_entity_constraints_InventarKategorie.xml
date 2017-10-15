@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity InventarKategorie.
+    -->
+    <changeSet id="20171015181336-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="uebergeordnete_kategorie_id"
+                                 baseTableName="inventar_kategorie"
+                                 constraintName="fk_inventar_kategorie_uebergeordnete_kategorie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="inventar_kategorie"/>
+
+    </changeSet>
+</databaseChangeLog>

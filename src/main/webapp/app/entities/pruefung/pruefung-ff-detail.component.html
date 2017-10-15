@@ -1,0 +1,51 @@
+
+<div *ngIf="pruefung">
+    <h2><span jhiTranslate="ffManagementSuiteApp.pruefung.detail.title">Pruefung</span> {{pruefung.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.pruefung.bezeichnung">Bezeichnung</span></dt>
+        <dd>
+            <span>{{pruefung.bezeichnung}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.pruefung.beginn">Beginn</span></dt>
+        <dd>
+            <span>{{pruefung.beginn | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.pruefung.letztePruefung">Letzte Pruefung</span></dt>
+        <dd>
+            <span>{{pruefung.letztePruefung | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.pruefung.intervallWert">Intervall Wert</span></dt>
+        <dd>
+            <span>{{pruefung.intervallWert}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.pruefung.intervallEinheit">Intervall Einheit</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ffManagementSuiteApp.IntervallEinheit.' + pruefung.intervallEinheit}}">{{pruefung.intervallEinheit}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.pruefung.kosten">Kosten</span></dt>
+        <dd>
+            <span>{{pruefung.kosten}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.pruefung.inventarKategorie">Inventar Kategorie</span></dt>
+        <dd>
+            <div *ngIf="pruefung.inventarKategorie">
+                <a [routerLink]="['/inventar-kategorie-ff', pruefung.inventarKategorie?.id]">{{pruefung.inventarKategorie?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pruefung-ff/'+ pruefung.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

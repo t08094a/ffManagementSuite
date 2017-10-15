@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity DurchfuehrungPruefung.
+    -->
+    <changeSet id="20171015181345-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="inventar_id"
+                                 baseTableName="durchfuehrung_pruefung"
+                                 constraintName="fk_durchfuehrung_pruefung_inventar_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="inventar"/>
+
+        <addForeignKeyConstraint baseColumnNames="schutzausruestung_id"
+                                 baseTableName="durchfuehrung_pruefung"
+                                 constraintName="fk_durchfuehrung_pruefung_schutzausruestung_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="schutzausruestung"/>
+
+        <addForeignKeyConstraint baseColumnNames="fahrzeug_id"
+                                 baseTableName="durchfuehrung_pruefung"
+                                 constraintName="fk_durchfuehrung_pruefung_fahrzeug_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fahrzeug"/>
+
+        <addForeignKeyConstraint baseColumnNames="atemschutz_inventar_id"
+                                 baseTableName="durchfuehrung_pruefung"
+                                 constraintName="fk_durchfuehrung_pruefung_atemschutz_inventar_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="atemschutz_inventar"/>
+
+        <addForeignKeyConstraint baseColumnNames="definition_id"
+                                 baseTableName="durchfuehrung_pruefung"
+                                 constraintName="fk_durchfuehrung_pruefung_definition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pruefung"/>
+
+    </changeSet>
+</databaseChangeLog>

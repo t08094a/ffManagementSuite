@@ -1,0 +1,72 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "kategorie",
+            "otherEntityName": "inventarKategorie",
+            "otherEntityField": "titel",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "schutzausruestung"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "auspraegung",
+            "otherEntityName": "auspraegung",
+            "otherEntityField": "bezeichnung",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "schutzausruestung"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "durchgefuehrteWartungen",
+            "otherEntityName": "durchfuehrungWartung",
+            "otherEntityRelationshipName": "schutzausruestung"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "durchgefuehrtePruefungen",
+            "otherEntityName": "durchfuehrungPruefung",
+            "otherEntityRelationshipName": "schutzausruestung"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "besitzer",
+            "otherEntityName": "person",
+            "otherEntityField": "nachname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nummer",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 1
+        },
+        {
+            "fieldName": "angeschafftAm",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "ausgemustertAm",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "groesse",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171015181338",
+    "entityTableName": "schutzausruestung",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "ff",
+    "enableEntityAudit": true
+}

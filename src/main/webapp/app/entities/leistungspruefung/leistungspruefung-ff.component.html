@@ -1,0 +1,60 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.leistungspruefung.home.title">Leistungspruefungs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-leistungspruefung-ff" [routerLink]="['/', { outlets: { popup: ['leistungspruefung-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.leistungspruefung.home.createLabel">
+            Create new Leistungspruefung
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="leistungspruefungs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="typ"><span jhiTranslate="ffManagementSuiteApp.leistungspruefung.typ">Typ</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="stufe"><span jhiTranslate="ffManagementSuiteApp.leistungspruefung.stufe">Stufe</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="abgelegtAm"><span jhiTranslate="ffManagementSuiteApp.leistungspruefung.abgelegtAm">Abgelegt Am</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let leistungspruefung of leistungspruefungs ;trackBy: trackId">
+                <td><a [routerLink]="['../leistungspruefung-ff', leistungspruefung.id ]">{{leistungspruefung.id}}</a></td>
+                <td jhiTranslate="{{'ffManagementSuiteApp.LeistungspruefungTyp.' + leistungspruefung.typ}}">{{leistungspruefung.typ}}</td>
+                <td>{{leistungspruefung.stufe}}</td>
+                <td>{{leistungspruefung.abgelegtAm | date:'mediumDate'}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../leistungspruefung-ff', leistungspruefung.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'leistungspruefung-ff/'+ leistungspruefung.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'leistungspruefung-ff/'+ leistungspruefung.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

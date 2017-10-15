@@ -1,0 +1,39 @@
+
+<div *ngIf="erreichbarkeit">
+    <h2><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.detail.title">Erreichbarkeit</span> {{erreichbarkeit.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.typ">Typ</span></dt>
+        <dd>
+            <span>{{erreichbarkeit.typ}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.vorwahl">Vorwahl</span></dt>
+        <dd>
+            <span>{{erreichbarkeit.vorwahl}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.rufnummer">Rufnummer</span></dt>
+        <dd>
+            <span>{{erreichbarkeit.rufnummer}}</span>
+        </dd>
+        <dt><span jhiTranslate="ffManagementSuiteApp.erreichbarkeit.person">Person</span></dt>
+        <dd>
+            <div *ngIf="erreichbarkeit.person">
+                <a [routerLink]="['/person-ff', erreichbarkeit.person?.id]">{{erreichbarkeit.person?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'erreichbarkeit-ff/'+ erreichbarkeit.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

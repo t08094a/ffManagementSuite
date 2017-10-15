@@ -1,0 +1,77 @@
+<div>
+    <h2>
+        <span jhiTranslate="ffManagementSuiteApp.ausbildung.home.title">Ausbildungs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-ausbildung-ff" [routerLink]="['/', { outlets: { popup: ['ausbildung-ff-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="ffManagementSuiteApp.ausbildung.home.createLabel">
+            Create new Ausbildung
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="ausbildungs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="beginn"><span jhiTranslate="ffManagementSuiteApp.ausbildung.beginn">Beginn</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ende"><span jhiTranslate="ffManagementSuiteApp.ausbildung.ende">Ende</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="zeugnis"><span jhiTranslate="ffManagementSuiteApp.ausbildung.zeugnis">Zeugnis</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="person.id"><span jhiTranslate="ffManagementSuiteApp.ausbildung.person">Person</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lehrgang.titel"><span jhiTranslate="ffManagementSuiteApp.ausbildung.lehrgang">Lehrgang</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let ausbildung of ausbildungs ;trackBy: trackId">
+                <td><a [routerLink]="['../ausbildung-ff', ausbildung.id ]">{{ausbildung.id}}</a></td>
+                <td>{{ausbildung.beginn | date:'mediumDate'}}</td>
+                <td>{{ausbildung.ende | date:'mediumDate'}}</td>
+                <td>
+                    <a *ngIf="ausbildung.zeugnis" (click)="openFile(ausbildung.zeugnisContentType, ausbildung.zeugnis)">
+                        <img [src]="'data:' + ausbildung.zeugnisContentType + ';base64,' + ausbildung.zeugnis" style="max-height: 30px;" alt="ausbildung image"/>
+                    </a>
+                    <span *ngIf="ausbildung.zeugnis">{{ausbildung.zeugnisContentType}}, {{byteSize(ausbildung.zeugnis)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="ausbildung.person">
+                        <a [routerLink]="['../person-ff', ausbildung.person?.id ]" >{{ausbildung.person?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ausbildung.lehrgang">
+                        <a [routerLink]="['../lehrgang-ff', ausbildung.lehrgang?.id ]" >{{ausbildung.lehrgang?.titel}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../ausbildung-ff', ausbildung.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ausbildung-ff/'+ ausbildung.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ausbildung-ff/'+ ausbildung.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+{
+    "ffManagementSuiteApp": {
+        "berichtselement" : {
+            "home": {
+                "title": "Dienstbericht",
+                "createLabel": "Eintrag erstellen",
+                "createOrEditLabel": "Eintrag erstellen oder bearbeiten"
+            },
+            "created": "Eintrag erstellt mit ID {{ param }}",
+            "updated": "Eintrag aktualisiert mit ID {{ param }}",
+            "deleted": "Eintrag gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Eintrag {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Berichtselement"
+            },
+            "beginn": "Beginn",
+            "ende": "Ende",
+            "titel": "Titel",
+            "beschreibung": "Beschreibung",
+            "stunden": "Dauer (h)",
+            "kategorie": "Kategorie"
+        }
+    }
+}
